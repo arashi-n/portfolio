@@ -1,0 +1,103 @@
+.game-world {
+	position: relative;
+	width: 1920px;
+	height: 1080px;
+}
+
+.house {
+	position: absolute;
+	left: 1225px;
+	top: 230px;
+	width: 374px;
+	height: 330px;
+}
+
+.castle {
+	position: absolute;
+	left: 293px;
+	top: 45px;
+	width: 577px;
+	height: 498px;
+}
+
+.skill-tree {
+	position: absolute;
+	left: 135px;
+	top: 661px;
+	width: 371px;
+	height: 336px;
+}
+
+.mailbox {
+	position: absolute;
+	left: 1544px;
+	top: 738px;
+	width: 166px;
+	height: 232px;
+}
+
+.player {
+	position: absolute;
+	left: 916px;
+	top: 595px;
+	z-index: 20;
+}
+
+.works-sign {
+	left: 185px;
+	top: 432px;
+}
+
+.about-sign {
+	left: 1519px;
+	top: 432px;
+}
+
+.skills-sign {
+	left: 44px;
+	top: 906px;
+}
+
+.contact-sign {
+	left: 1671px;
+	top: 906px;
+}
+
+.castle,
+.house,
+.skill-tree,
+.mailbox {
+	filter: drop-shadow(0px 6px 0px rgba(0, 0, 0, 0.3));
+}
+
+.hit-area {
+	position: absolute;
+}
+
+.castle-hit {
+	left: 55%;
+	top: 75%;
+	width: 20%;
+	height: 20%;
+}
+
+.house-hit {
+	left: 25%;
+	top: 65%;
+	width: 15%;
+	height: 25%;
+}
+
+.skill-tree-hit {
+	left: 50%;
+	top: 70%;
+	width: 20%;
+	height: 20%;
+}
+
+.mailbox-hit {
+	left: 5%;
+	top: 30%;
+	width: 40%;
+	height: 70%;
+}
