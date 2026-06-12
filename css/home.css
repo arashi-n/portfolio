@@ -43,6 +43,10 @@
 	z-index: 20;
 }
 
+.player.left {
+	transform: scaleX(-1);
+}
+
 .works-sign {
 	left: 185px;
 	top: 432px;

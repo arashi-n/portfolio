@@ -47,6 +47,8 @@ let isTransitioning = false;
 function update() {
 	const speed = 1.5;
 
+	let prevX = x;
+
 	if (keys["ArrowUp"] || keys["w"]) y -= speed;
 	if (keys["ArrowDown"] || keys["s"]) y += speed;
 	if (keys["ArrowLeft"] || keys["a"]) x -= speed;
@@ -54,6 +56,12 @@ function update() {
 
 	player.style.left = x + "px";
 	player.style.top = y + "px";
+
+	if (x < prevX) {
+		player.classList.remove("left");
+	} else if (x > prevX) {
+		player.classList.add("left");
+	}
 
 	const isMoving =
 		keys["ArrowUp"] ||
