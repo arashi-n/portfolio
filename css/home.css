@@ -47,6 +47,64 @@
 	transform: scaleX(-1);
 }
 
+@font-face {
+	font-family: "PressStart2P";
+	src: url("../fonts/PressStart2P-Regular.ttf") format("truetype");
+}
+
+@keyframes sharpBlinkCycle {
+	0% {
+		opacity: 1;
+	}
+	5% {
+		opacity: 0;
+	}
+	10% {
+		opacity: 1;
+	}
+	15% {
+		opacity: 0;
+	}
+	20% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+.player-speech {
+	position: absolute;
+	background: #fff;
+	color: rgba(0, 0, 0, 0.7);
+	border: 2px solid rgba(0, 0, 0, 0.7);
+	padding: 6px 10px;
+
+	font-size: 12px;
+	font-family: "PressStart2P", sans-serif;
+	white-space: nowrap;
+
+	display: inline-block;
+
+	transform: translateX(-50%) scale(0.8, 1.2);
+	pointer-events: none;
+	animation: sharpBlinkCycle 3.5s infinite steps(1);
+}
+
+.player-speech::after {
+	content: "";
+	position: absolute;
+	bottom: -6px;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 0;
+	height: 0;
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;
+	border-top: 6px solid rgba(0, 0, 0, 0.7);
+}
+
 .works-sign {
 	left: 185px;
 	top: 432px;

@@ -1,5 +1,15 @@
 const player = document.querySelector(".player");
 const playerImg = document.querySelector(".player img");
+const speech = document.querySelector(".player-speech");
+
+let speechHidden = false;
+
+function hideSpeech() {
+	if (!speechHidden && speech) {
+		speech.style.display = "none";
+		speechHidden = true;
+	}
+}
 
 const walkFrames = ["./assets/player_walk1.png", "./assets/player_walk2.png"];
 
@@ -25,6 +35,13 @@ const buildings = [
 	{ el: document.querySelector(".skill-tree-hit"), link: "skills.html" },
 	{ el: document.querySelector(".mailbox-hit"), link: "contact.html" },
 ];
+
+setInterval(() => {
+	buildings.forEach((b) => {
+		if (!b.el) return;
+		b.el.classList.toggle("glow-idle");
+	});
+}, 2000);
 
 function getDistance(a, b) {
 	const ar = a.getBoundingClientRect();
@@ -63,6 +80,13 @@ function update() {
 		player.classList.add("left");
 	}
 
+	const speech = document.querySelector(".player-speech");
+
+	if (speech && !speechHidden) {
+		speech.style.left = x + "px";
+		speech.style.top = y - 40 + "px";
+	}
+
 	const isMoving =
 		keys["ArrowUp"] ||
 		keys["ArrowDown"] ||
@@ -72,6 +96,10 @@ function update() {
 		keys["a"] ||
 		keys["s"] ||
 		keys["d"];
+
+	if (isMoving && speech) {
+		hideSpeech();
+	}
 
 	if (isMoving) {
 		frameTimer++;
@@ -87,6 +115,7 @@ function update() {
 	}
 
 	buildings.forEach((b) => {
+		// b.el.addEventListener("click", hideSpeech);
 		const distance = getDistance(player, b.el);
 
 		if (distance < 80 && !isTransitioning) {
