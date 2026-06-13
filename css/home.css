@@ -52,25 +52,22 @@
 	src: url("../fonts/PressStart2P-Regular.ttf") format("truetype");
 }
 
-@keyframes sharpBlinkCycle {
+@keyframes speechIntro {
 	0% {
-		opacity: 1;
-	}
-	5% {
 		opacity: 0;
+		transform: translateX(-50%) scale(0.8, 1.2);
 	}
-	10% {
+
+	50% {
 		opacity: 1;
-	}
-	15% {
-		opacity: 0;
-	}
-	20% {
-		opacity: 1;
+		transform: translateX(-50%) scale(0.88, 1.32);
+		box-shadow: 0 0 12px rgba(255, 255, 255, 0.9);
 	}
 
 	100% {
 		opacity: 1;
+		transform: translateX(-50%) scale(0.8, 1.2);
+		box-shadow: none;
 	}
 }
 
@@ -83,13 +80,15 @@
 
 	font-size: 12px;
 	font-family: "PressStart2P", sans-serif;
+	text-align: center;
+	line-height: 1.8;
 	white-space: nowrap;
 
 	display: inline-block;
 
 	transform: translateX(-50%) scale(0.8, 1.2);
 	pointer-events: none;
-	animation: sharpBlinkCycle 3.5s infinite steps(1);
+	animation: speechIntro 0.8s ease-out;
 }
 
 .player-speech::after {
@@ -123,6 +122,21 @@
 .contact-sign {
 	left: 1671px;
 	top: 906px;
+}
+
+@keyframes buildingHint {
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+
+	50% {
+		transform: translateY(-4px);
+	}
+}
+
+.bounce {
+	animation: buildingHint 0.8s ease;
 }
 
 .castle,

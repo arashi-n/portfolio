@@ -115,7 +115,6 @@ function update() {
 	}
 
 	buildings.forEach((b) => {
-		// b.el.addEventListener("click", hideSpeech);
 		const distance = getDistance(player, b.el);
 
 		if (distance < 80 && !isTransitioning) {
@@ -131,6 +130,27 @@ function update() {
 
 	requestAnimationFrame(update);
 }
+
+const animatedBuildings = [
+	document.querySelector(".castle"),
+	document.querySelector(".house"),
+	document.querySelector(".skill-tree"),
+	document.querySelector(".mailbox"),
+];
+
+let currentBuilding = 0;
+
+setInterval(() => {
+	const building = animatedBuildings[currentBuilding];
+
+	building.classList.add("bounce");
+
+	setTimeout(() => {
+		building.classList.remove("bounce");
+	}, 800);
+
+	currentBuilding = (currentBuilding + 1) % animatedBuildings.length;
+}, 1500);
 
 function drawDebugBox(el) {
 	const rect = el.getBoundingClientRect();
