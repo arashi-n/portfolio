@@ -1,9 +1,32 @@
+/* =====================
+    フォント
+===================== */
+@font-face {
+	font-family: "PressStart2P";
+	src: url("../fonts/PressStart2P-Regular.ttf") format("truetype");
+}
+
+/* =====================
+    レイアウト
+===================== */
 .game-world {
 	position: relative;
 	width: 1920px;
 	height: 1080px;
 }
 
+.player {
+	position: absolute;
+	left: 916px;
+	top: 595px;
+	z-index: 20;
+}
+
+.player.left {
+	transform: scaleX(-1);
+}
+
+/* 建物配置 */
 .house {
 	position: absolute;
 	left: 1225px;
@@ -36,41 +59,56 @@
 	height: 232px;
 }
 
-.player {
+/* =====================
+    看板
+===================== */
+.sign {
 	position: absolute;
-	left: 916px;
-	top: 595px;
-	z-index: 20;
+	width: 216px;
+	height: 150px;
+	z-index: 10;
 }
 
-.player.left {
-	transform: scaleX(-1);
+.sign img {
+	width: 100%;
+	height: 100%;
 }
 
-@font-face {
-	font-family: "PressStart2P";
-	src: url("../fonts/PressStart2P-Regular.ttf") format("truetype");
+.sign span {
+	position: absolute;
+	top: 26%;
+	left: 50%;
+	transform: translateX(-50%);
+	font-family: "PixelMplus12";
+	font-size: 50px;
+	color: #7d7d7d;
+	white-space: nowrap;
 }
 
-@keyframes speechIntro {
-	0% {
-		opacity: 0;
-		transform: translateX(-50%) scale(0.8, 1.2);
-	}
-
-	50% {
-		opacity: 1;
-		transform: translateX(-50%) scale(0.88, 1.32);
-		box-shadow: 0 0 12px rgba(255, 255, 255, 0.9);
-	}
-
-	100% {
-		opacity: 1;
-		transform: translateX(-50%) scale(0.8, 1.2);
-		box-shadow: none;
-	}
+/* 各看板位置 */
+.works-sign {
+	left: 185px;
+	top: 432px;
 }
 
+.about-sign {
+	left: 1519px;
+	top: 432px;
+}
+
+.skills-sign {
+	left: 44px;
+	top: 906px;
+}
+
+.contact-sign {
+	left: 1671px;
+	top: 906px;
+}
+
+/* =====================
+    吹き出し
+===================== */
 .player-speech {
 	position: absolute;
 	background: #fff;
@@ -104,24 +142,41 @@
 	border-top: 6px solid rgba(0, 0, 0, 0.7);
 }
 
-.works-sign {
-	left: 185px;
-	top: 432px;
+@keyframes speechIntro {
+	0% {
+		opacity: 0;
+		transform: translateX(-50%) scale(0.8, 1.2);
+	}
+
+	50% {
+		opacity: 1;
+		transform: translateX(-50%) scale(0.88, 1.32);
+		box-shadow: 0 0 12px rgba(255, 255, 255, 0.9);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateX(-50%) scale(0.8, 1.2);
+		box-shadow: none;
+	}
 }
 
-.about-sign {
-	left: 1519px;
-	top: 432px;
+/* =====================
+    建物演出
+===================== */
+.castle,
+.house,
+.skill-tree,
+.mailbox {
+	filter: drop-shadow(0px 6px 0px rgba(0, 0, 0, 0.3));
 }
 
-.skills-sign {
-	left: 44px;
-	top: 906px;
-}
-
-.contact-sign {
-	left: 1671px;
-	top: 906px;
+.house:hover,
+.castle:hover,
+.skill-tree:hover,
+.mailbox:hover {
+	transform: scale(1.05);
+	transition: transform 0.2s ease;
 }
 
 @keyframes buildingHint {
@@ -139,13 +194,9 @@
 	animation: buildingHint 0.8s ease;
 }
 
-.castle,
-.house,
-.skill-tree,
-.mailbox {
-	filter: drop-shadow(0px 6px 0px rgba(0, 0, 0, 0.3));
-}
-
+/* =====================
+    当たり判定
+===================== */
 .hit-area {
 	position: absolute;
 }
@@ -176,4 +227,27 @@
 	top: 30%;
 	width: 40%;
 	height: 70%;
+}
+
+/* =====================
+    共通
+===================== */
+a:hover {
+	cursor: pointer;
+}
+
+.player img {
+	animation: metro 1s steps(1, end) infinite;
+}
+
+@keyframes metro {
+	0% {
+		transform: translateY(0px);
+	}
+	50% {
+		transform: translateY(-2px);
+	}
+	100% {
+		transform: translateY(2px);
+	}
 }

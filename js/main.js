@@ -1,17 +1,14 @@
+// ====================
+// DOM取得
+// ====================
 const player = document.querySelector(".player");
 const playerImg = document.querySelector(".player img");
 const speech = document.querySelector(".player-speech");
 
+// ====================
+// 状態管理
+// ====================
 let speechHidden = false;
-
-function hideSpeech() {
-	if (!speechHidden && speech) {
-		speech.style.display = "none";
-		speechHidden = true;
-	}
-}
-
-const walkFrames = ["./assets/player_walk1.png", "./assets/player_walk2.png"];
 
 let x = 916;
 let y = 595;
@@ -19,8 +16,39 @@ let y = 595;
 let frameTimer = 0;
 let frameIndex = 0;
 
+let isTransitioning = false;
+
+let currentBuilding = 0;
+
+// ====================
+// 定数
+// ====================
+const speed = 1.5;
+
 const keys = {};
 
+const walkFrames = ["./assets/player_walk1.png", "./assets/player_walk2.png"];
+
+// ====================
+// 建物データ
+// ====================
+const buildings = [
+	{ el: document.querySelector(".castle-hit"), link: "works.html" },
+	{ el: document.querySelector(".house-hit"), link: "about.html" },
+	{ el: document.querySelector(".skill-tree-hit"), link: "skills.html" },
+	{ el: document.querySelector(".mailbox-hit"), link: "contact.html" },
+];
+
+const animatedBuildings = [
+	document.querySelector(".castle"),
+	document.querySelector(".house"),
+	document.querySelector(".skill-tree"),
+	document.querySelector(".mailbox"),
+];
+
+// ====================
+// イベント
+// ====================
 document.addEventListener("keydown", (e) => {
 	keys[e.key] = true;
 });
@@ -29,19 +57,15 @@ document.addEventListener("keyup", (e) => {
 	keys[e.key] = false;
 });
 
-const buildings = [
-	{ el: document.querySelector(".castle-hit"), link: "works.html" },
-	{ el: document.querySelector(".house-hit"), link: "about.html" },
-	{ el: document.querySelector(".skill-tree-hit"), link: "skills.html" },
-	{ el: document.querySelector(".mailbox-hit"), link: "contact.html" },
-];
-
-setInterval(() => {
-	buildings.forEach((b) => {
-		if (!b.el) return;
-		b.el.classList.toggle("glow-idle");
-	});
-}, 2000);
+// ====================
+// 関数
+// ====================
+function hideSpeech() {
+	if (!speechHidden && speech) {
+		speech.style.display = "none";
+		speechHidden = true;
+	}
+}
 
 function getDistance(a, b) {
 	const ar = a.getBoundingClientRect();
@@ -59,11 +83,20 @@ function getDistance(a, b) {
 	return Math.sqrt(dx * dx + dy * dy);
 }
 
-let isTransitioning = false;
+function animateBuildings() {
+	const building = animatedBuildings[currentBuilding];
+
+	building.classList.add("bounce");
+
+	setTimeout(() => {
+		building.classList.remove("bounce");
+	}, 800);
+
+	currentBuilding = (currentBuilding + 1) % animatedBuildings.length;
+}
 
 function update() {
-	const speed = 1.5;
-
+	// プレイヤー移動
 	let prevX = x;
 
 	if (keys["ArrowUp"] || keys["w"]) y -= speed;
@@ -74,19 +107,20 @@ function update() {
 	player.style.left = x + "px";
 	player.style.top = y + "px";
 
+	// 向き変更
 	if (x < prevX) {
 		player.classList.remove("left");
 	} else if (x > prevX) {
 		player.classList.add("left");
 	}
 
-	const speech = document.querySelector(".player-speech");
-
+	// 吹き出し更新
 	if (speech && !speechHidden) {
 		speech.style.left = x + "px";
-		speech.style.top = y - 40 + "px";
+		speech.style.top = y - 70 + "px";
 	}
 
+	// 移動判定
 	const isMoving =
 		keys["ArrowUp"] ||
 		keys["ArrowDown"] ||
@@ -101,6 +135,7 @@ function update() {
 		hideSpeech();
 	}
 
+	// 歩行アニメーション
 	if (isMoving) {
 		frameTimer++;
 
@@ -114,6 +149,7 @@ function update() {
 		playerImg.src = "./assets/player_idle.png";
 	}
 
+	// 建物入口判定
 	buildings.forEach((b) => {
 		const distance = getDistance(player, b.el);
 
@@ -128,46 +164,16 @@ function update() {
 		}
 	});
 
+	// 次フレーム更新
 	requestAnimationFrame(update);
 }
 
-const animatedBuildings = [
-	document.querySelector(".castle"),
-	document.querySelector(".house"),
-	document.querySelector(".skill-tree"),
-	document.querySelector(".mailbox"),
-];
+// ====================
+// 演出
+// ====================
+setInterval(animateBuildings, 1500);
 
-let currentBuilding = 0;
-
-setInterval(() => {
-	const building = animatedBuildings[currentBuilding];
-
-	building.classList.add("bounce");
-
-	setTimeout(() => {
-		building.classList.remove("bounce");
-	}, 800);
-
-	currentBuilding = (currentBuilding + 1) % animatedBuildings.length;
-}, 1500);
-
-function drawDebugBox(el) {
-	const rect = el.getBoundingClientRect();
-
-	const box = document.createElement("div");
-
-	box.style.position = "absolute";
-	box.style.left = rect.left + "px";
-	box.style.top = rect.top + "px";
-	box.style.width = rect.width + "px";
-	box.style.height = rect.height + "px";
-
-	box.style.border = "2px solid red";
-	box.style.pointerEvents = "none";
-	box.style.zIndex = "9999";
-
-	document.body.appendChild(box);
-}
-
+// ====================
+// 初期化
+// ====================
 update();
