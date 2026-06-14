@@ -123,6 +123,12 @@ function update() {
 	if (keys["ArrowLeft"] || keys["a"]) x -= speed;
 	if (keys["ArrowRight"] || keys["d"]) x += speed;
 
+	if (keys["ArrowLeft"] || keys["a"]) {
+		player.classList.remove("left");
+	} else if (keys["ArrowRight"] || keys["d"]) {
+		player.classList.add("left");
+	}
+
 	clampPlayer();
 
 	player.style.left = x + "px";
