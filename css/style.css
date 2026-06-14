@@ -47,3 +47,8 @@ img {
 body {
 	transition: opacity 0.3s ease;
 }
+
+.game-world {
+	transform: scaleY(0.85);
+	transform-origin: top;
+}
