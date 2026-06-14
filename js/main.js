@@ -106,6 +106,14 @@ function animateBuildings() {
 	currentBuilding = (currentBuilding + 1) % animatedBuildings.length;
 }
 
+function clampPlayer() {
+	const playerWidth = player.offsetWidth;
+	const playerHeight = player.offsetHeight;
+
+	x = Math.min(1920 - playerWidth, Math.max(0, x));
+	y = Math.min(1080 - playerHeight, Math.max(0, y));
+}
+
 function update() {
 	// プレイヤー移動
 	let prevX = x;
@@ -114,6 +122,8 @@ function update() {
 	if (keys["ArrowDown"] || keys["s"]) y += speed;
 	if (keys["ArrowLeft"] || keys["a"]) x -= speed;
 	if (keys["ArrowRight"] || keys["d"]) x += speed;
+
+	clampPlayer();
 
 	player.style.left = x + "px";
 	player.style.top = y + "px";
