@@ -44,11 +44,32 @@ img {
 /* =====================
     共通設定
 ===================== */
+html,
+body {
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	height: 100%;
+	background: #000;
+}
+
 body {
 	transition: opacity 0.3s ease;
 }
 
+.game-wrapper {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
 .game-world {
-	transform: scaleY(0.85);
-	transform-origin: top;
+	width: 1920px;
+	height: 1080px;
+	transform-origin: center;
 }

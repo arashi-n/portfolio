@@ -60,6 +60,17 @@ document.addEventListener("keyup", (e) => {
 // ====================
 // 関数
 // ====================
+function resizeGame() {
+	const game = document.querySelector(".game-world");
+
+	const scale = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+
+	game.style.transform = `scale(${scale})`;
+}
+
+window.addEventListener("resize", resizeGame);
+resizeGame();
+
 function hideSpeech() {
 	if (!speechHidden && speech) {
 		speech.style.display = "none";
