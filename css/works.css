@@ -28,7 +28,7 @@ body {
 }
 
 .work-card {
-	height: 240px;
+	height: 420px;
 	overflow: hidden;
 
 	background: #fff;
@@ -75,6 +75,13 @@ body {
 
 .work-card:hover {
 	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.work-image {
+	width: 100%;
+	aspect-ratio: 16 / 9;
+	object-fit: cover;
+	object-position: top;
 }
 
 .work-card h2 {
