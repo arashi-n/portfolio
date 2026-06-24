@@ -1,6 +1,12 @@
 // ====================
 // DOM取得
 // ====================
+const input = {
+	up: false,
+	down: false,
+	left: false,
+	right: false,
+};
 const player = document.querySelector(".player");
 const playerImg = document.querySelector(".player img");
 const speech = document.querySelector(".player-speech");
@@ -26,6 +32,7 @@ let currentBuilding = 0;
 const speed = 1.5;
 
 const keys = {};
+const touch = {};
 
 const walkFrames = ["./assets/player_walk1.png", "./assets/player_walk2.png"];
 
@@ -118,10 +125,10 @@ function update() {
 	// プレイヤー移動
 	let prevX = x;
 
-	if (keys["ArrowUp"] || keys["w"]) y -= speed;
-	if (keys["ArrowDown"] || keys["s"]) y += speed;
-	if (keys["ArrowLeft"] || keys["a"]) x -= speed;
-	if (keys["ArrowRight"] || keys["d"]) x += speed;
+	if (input.up) y -= speed;
+	if (input.down) y += speed;
+	if (input.left) x -= speed;
+	if (input.right) x += speed;
 
 	if (keys["ArrowLeft"] || keys["a"]) {
 		player.classList.remove("left");
@@ -148,15 +155,7 @@ function update() {
 	}
 
 	// 移動判定
-	const isMoving =
-		keys["ArrowUp"] ||
-		keys["ArrowDown"] ||
-		keys["ArrowLeft"] ||
-		keys["ArrowRight"] ||
-		keys["w"] ||
-		keys["a"] ||
-		keys["s"] ||
-		keys["d"];
+	const isMoving = input.up || input.down || input.left || input.right;
 
 	if (isMoving && speech) {
 		hideSpeech();
@@ -195,6 +194,64 @@ function update() {
 	requestAnimationFrame(update);
 }
 
+function bindTouch(id, key) {
+	const btn = document.getElementById(id);
+
+	btn.addEventListener("touchstart", (e) => {
+		e.preventDefault();
+		touch[key] = true;
+	});
+
+	btn.addEventListener("touchend", () => {
+		touch[key] = false;
+	});
+}
+
+bindTouch("up", "ArrowUp");
+bindTouch("down", "ArrowDown");
+bindTouch("left", "ArrowLeft");
+bindTouch("right", "ArrowRight");
+
+window.addEventListener("keydown", (e) => {
+	if (e.key === "ArrowUp" || e.key === "w") input.up = true;
+	if (e.key === "ArrowDown" || e.key === "s") input.down = true;
+	if (e.key === "ArrowLeft" || e.key === "a") input.left = true;
+	if (e.key === "ArrowRight" || e.key === "d") input.right = true;
+});
+
+window.addEventListener("keyup", (e) => {
+	if (e.key === "ArrowUp" || e.key === "w") input.up = false;
+	if (e.key === "ArrowDown" || e.key === "s") input.down = false;
+	if (e.key === "ArrowLeft" || e.key === "a") input.left = false;
+	if (e.key === "ArrowRight" || e.key === "d") input.right = false;
+});
+
+function setupMobileControls() {
+	const bind = (id, key) => {
+		const btn = document.getElementById(id);
+
+		if (!btn) return;
+
+		btn.addEventListener("pointerdown", (e) => {
+			e.preventDefault();
+			input[key] = true;
+		});
+
+		btn.addEventListener("pointerup", () => {
+			input[key] = false;
+		});
+
+		btn.addEventListener("pointerleave", () => {
+			input[key] = false;
+		});
+	};
+
+	bind("up", "up");
+	bind("down", "down");
+	bind("left", "left");
+	bind("right", "right");
+}
+
 // ====================
 // 演出
 // ====================
@@ -204,3 +261,4 @@ setInterval(animateBuildings, 1500);
 // 初期化
 // ====================
 update();
+setupMobileControls();
