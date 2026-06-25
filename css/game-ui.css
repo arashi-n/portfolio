@@ -10,9 +10,9 @@
 
 .game-header {
 	position: fixed;
-	top: 20px;
-	left: 20px;
-	right: 20px;
+	top: 0px;
+	left: 0px;
+	right: 0px;
 
 	height: 90px;
 	padding: 0 30px;
@@ -27,10 +27,6 @@
 	z-index: 1000;
 }
 
-.game-footer {
-	margin: 40px 20px 20px;
-}
-
 .game-nav {
 	display: flex;
 	justify-content: flex-end;
@@ -41,19 +37,23 @@
 }
 
 .game-nav a::before {
-	content: "";
+	content: "▶";
+	visibility: hidden;
+	display: inline-block;
+	width: 20px;
+	color: #fff;
 }
 
 .game-nav a:hover::before,
 .game-nav a.active::before {
-	content: "▶ ";
+	visibility: visible;
 }
 
 .game-footer {
 	position: fixed;
-	left: 20px;
-	right: 20px;
-	bottom: 20px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
 
 	height: 70px;
 
