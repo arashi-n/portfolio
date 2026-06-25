@@ -9,6 +9,10 @@
 /* =====================
     レイアウト
 ===================== */
+body.home {
+	overflow: hidden;
+}
+
 .game-world {
 	position: relative;
 	width: 1920px;
