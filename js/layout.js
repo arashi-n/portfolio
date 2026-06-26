@@ -5,12 +5,15 @@ function createLayout() {
 		works: [
 			{ name: "Home", link: "index.html" },
 			{ name: "Skills", link: "skills.html" },
+			{ name: "About", link: "about.html" },
 			{ name: "Contact", link: "contact.html" },
 		],
 
 		skills: [
 			{ name: "Home", link: "index.html" },
 			{ name: "Works", link: "works.html" },
+			{ name: "About", link: "about.html" },
+
 			{ name: "Contact", link: "contact.html" },
 		],
 
@@ -18,11 +21,14 @@ function createLayout() {
 			{ name: "Home", link: "index.html" },
 			{ name: "Works", link: "works.html" },
 			{ name: "Skills", link: "skills.html" },
+			{ name: "About", link: "about.html" },
 		],
 
 		about: [
 			{ name: "Home", link: "index.html" },
 			{ name: "Works", link: "works.html" },
+			{ name: "Skills", link: "skills.html" },
+
 			{ name: "Contact", link: "contact.html" },
 		],
 	};
