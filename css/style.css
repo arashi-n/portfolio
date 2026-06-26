@@ -17,31 +17,6 @@ img {
 }
 
 /* =====================
-    共通UI
-===================== */
-.back-button {
-	position: fixed;
-	top: 20px;
-	left: 20px;
-
-	font-family: "PixelMplus12";
-	font-size: 20px;
-	color: #fff;
-
-	background: rgba(0, 0, 0, 0.5);
-	padding: 8px 12px;
-	border-radius: 6px;
-
-	text-decoration: none;
-	z-index: 9999;
-}
-
-.back-button:hover {
-	transform: scale(1.05);
-	transition: 0.2s;
-}
-
-/* =====================
     共通設定
 ===================== */
 html,
