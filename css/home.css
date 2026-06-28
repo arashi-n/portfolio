@@ -9,14 +9,22 @@
 /* =====================
     レイアウト
 ===================== */
-body.home {
+.game-wrapper {
+	position: fixed;
+	inset: 0;
 	overflow: hidden;
 }
 
 .game-world {
-	position: relative;
 	width: 1920px;
 	height: 1080px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+}
+
+body.home {
+	overflow: hidden;
 }
 
 .player {
@@ -85,7 +93,8 @@ body.home {
 	transform: translateX(-50%);
 	font-family: "PixelMplus12";
 	font-size: 50px;
-	color: #7d7d7d;
+	color: #333;
+	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
 	white-space: nowrap;
 }
 

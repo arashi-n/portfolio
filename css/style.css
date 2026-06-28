@@ -32,19 +32,14 @@ body {
 	transition: opacity 0.3s ease;
 }
 
-.game-wrapper {
+.background {
 	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100vw;
-	height: 100vh;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	inset: 0;
+	z-index: 0;
+	object-fit: cover;
 }
 
-.game-world {
-	width: 1920px;
-	height: 1080px;
-	transform-origin: center;
+.page {
+	position: relative;
+	z-index: 1;
 }

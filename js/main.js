@@ -70,12 +70,16 @@ document.addEventListener("keyup", (e) => {
 function resizeGame() {
 	const game = document.querySelector(".game-world");
 
-	const scale = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+	const vw = window.innerWidth;
+	const vh = window.innerHeight;
 
-	game.style.transform = `scale(${scale})`;
+	const scale = Math.min(vw / 1920, vh / 1080);
+
+	game.style.transform = `translate(-50%, -50%) scale(${scale})`;
 }
 
 window.addEventListener("resize", resizeGame);
+window.addEventListener("load", resizeGame);
 resizeGame();
 
 function hideSpeech() {
