@@ -29,7 +29,8 @@ let currentBuilding = 0;
 // ====================
 // 定数
 // ====================
-const speed = 1.5;
+const speed = 3;
+let lastTime = performance.now();
 
 const keys = {};
 const touch = {};
@@ -125,14 +126,17 @@ function clampPlayer() {
 	y = Math.min(1080 - playerHeight, Math.max(0, y));
 }
 
-function update() {
+function update(timestamp) {
+	const delta = (timestamp - lastTime) / 16.67;
+	lastTime = timestamp;
+
 	// プレイヤー移動
 	let prevX = x;
 
-	if (input.up) y -= speed;
-	if (input.down) y += speed;
-	if (input.left) x -= speed;
-	if (input.right) x += speed;
+	if (input.up) y -= speed * delta;
+	if (input.down) y += speed * delta;
+	if (input.left) x -= speed * delta;
+	if (input.right) x += speed * delta;
 
 	if (keys["ArrowLeft"] || keys["a"]) {
 		player.classList.remove("left");
@@ -276,5 +280,5 @@ setInterval(animateBuildings, 1500);
 // ====================
 // 初期化
 // ====================
-update();
+requestAnimationFrame(update);
 setupMobileControls();
