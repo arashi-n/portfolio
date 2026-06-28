@@ -39,7 +39,7 @@ body {
 	object-fit: cover;
 }
 
-.page {
+main {
 	position: relative;
 	z-index: 1;
 }
