@@ -41,12 +41,14 @@ function createLayout() {
 		.join("");
 
 	header.innerHTML = `
-		<header class="game-header">
-			<nav class="game-nav">
-				${nav}
-			</nav>
-		</header>
-	`;
+	<header class="game-header">
+		<button class="menu-btn">MENU</button>
+
+		<nav class="game-nav">
+			${nav}
+		</nav>
+	</header>
+`;
 
 	footer.innerHTML = `
 		<footer class="game-footer">
@@ -56,3 +58,32 @@ function createLayout() {
 }
 
 createLayout();
+
+const menuBtn = document.querySelector(".menu-btn");
+const gameNav = document.querySelector(".game-nav");
+
+menuBtn.addEventListener("click", () => {
+	gameNav.classList.toggle("open");
+
+	if (gameNav.classList.contains("open")) {
+		menuBtn.textContent = "CLOSE";
+	} else {
+		menuBtn.textContent = "MENU";
+	}
+});
+
+document.addEventListener("click", (e) => {
+	const clickedMenu = gameNav.contains(e.target) || menuBtn.contains(e.target);
+
+	if (!clickedMenu && gameNav.classList.contains("open")) {
+		gameNav.classList.remove("open");
+		menuBtn.textContent = "MENU";
+	}
+});
+
+gameNav.querySelectorAll("a").forEach((link) => {
+	link.addEventListener("click", () => {
+		gameNav.classList.remove("open");
+		menuBtn.textContent = "MENU";
+	});
+});
