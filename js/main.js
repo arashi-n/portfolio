@@ -181,11 +181,23 @@ function update() {
 
 	// 建物入口判定
 	buildings.forEach((b) => {
-		const distance = getDistance(player, b.el);
+		const playerRect = player.getBoundingClientRect();
+		const footRect = {
+			left: playerRect.left + playerRect.width * 0.35,
+			right: playerRect.left + playerRect.width * 0.65,
+			top: playerRect.bottom - 10,
+			bottom: playerRect.bottom,
+		};
+		const buildingRect = b.el.getBoundingClientRect();
 
-		if (distance < 80 && !isTransitioning) {
+		const hit =
+			footRect.right > buildingRect.left &&
+			footRect.left < buildingRect.right &&
+			footRect.bottom > buildingRect.top &&
+			footRect.top < buildingRect.bottom;
+
+		if (hit && !isTransitioning) {
 			isTransitioning = true;
-			document.body.style.transition = "opacity 0.3s";
 			document.body.style.opacity = "0";
 
 			setTimeout(() => {
