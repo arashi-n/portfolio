@@ -5,16 +5,6 @@ body {
 	background: transparent;
 }
 
-.background {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100vw;
-	height: 100vh;
-	z-index: 0;
-	pointer-events: none;
-}
-
 .skills {
 	max-width: 1000px;
 	margin: 0 auto;
