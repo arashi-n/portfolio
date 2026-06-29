@@ -1,4 +1,4 @@
-const cards = document.querySelectorAll(".work-card");
+const cards = document.querySelectorAll(".work-card, .creative-card");
 const closeButtons = document.querySelectorAll(".modal-close");
 
 cards.forEach((card) => {

@@ -142,7 +142,8 @@ body {
 	opacity: 0.6;
 }
 
-.creative-card {
+/* Works内の入口カード専用 */
+.works-container .creative-entry-card {
 	grid-column: 1 / -1;
 	height: 180px;
 
@@ -154,32 +155,32 @@ body {
 	padding: 30px;
 }
 
-.creative-card:hover {
+.works-container .creative-entry-card:hover {
 	transform: translateY(-5px);
 }
 
-.creative-icon {
+.works-container .creative-entry-icon {
 	font-size: 72px;
 	flex-shrink: 0;
 }
 
-.creative-content {
+.works-container .creative-entry-content {
 	display: flex;
 	flex-direction: column;
 	gap: 8px;
 	flex: 1;
 }
 
-.enter-text {
+.works-container .creative-entry-text {
 	margin-top: auto;
 	align-self: flex-end;
 	font-weight: bold;
 }
 
-.enter-text::before {
-	content: "";
+.works-container .creative-entry-card:hover .creative-entry-text::before {
+	content: "▶ ";
 }
 
-.creative-card:hover .enter-text::before {
+.works-container .creative-entry-card:hover .enter-text::before {
 	content: "▶ ";
 }
