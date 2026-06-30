@@ -81,6 +81,21 @@ body {
 	padding: 10px;
 }
 
+@media (max-width: 768px) {
+	.mini-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.mini-card {
+		min-height: 100px;
+	}
+
+	.mini-card img {
+		width: 100px;
+		height: 100px;
+	}
+}
+
 /* =========================
    スキルバー
 ========================= */
