@@ -8,7 +8,8 @@ body {
 	margin: 0 auto;
 	padding: 120px 40px 100px;
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(320px, 320px));
+	justify-content: center;
 	gap: 24px;
 
 	position: relative;
@@ -145,7 +146,8 @@ body {
 /* Works内の入口カード専用 */
 .works-container .creative-entry-card {
 	grid-column: 1 / -1;
-	height: 180px;
+	height: auto;
+	min-height: 180px;
 
 	display: flex;
 	flex-direction: row;
@@ -153,10 +155,20 @@ body {
 	gap: 30px;
 
 	padding: 30px;
+
+	border: 2px solid #111;
+	outline: 2px solid #111;
+	outline-offset: 3px;
+	background: #f9f9f9;
+	cursor: pointer;
+	transition:
+		transform 0.2s ease,
+		box-shadow 0.2s ease;
 }
 
 .works-container .creative-entry-card:hover {
 	transform: translateY(-5px);
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
 .works-container .creative-entry-icon {
@@ -172,15 +184,57 @@ body {
 }
 
 .works-container .creative-entry-text {
-	margin-top: auto;
 	align-self: flex-end;
 	font-weight: bold;
 }
 
-.works-container .creative-entry-card:hover .creative-entry-text::before {
-	content: "▶ ";
+.enter-label {
+	font-size: 14px;
+	font-weight: bold;
+	letter-spacing: 2px;
+
+	color: #aaa;
+
+	border-bottom: 2px solid #aaa;
+	padding-bottom: 2px;
+
+	transition: all 0.2s ease;
 }
 
-.works-container .creative-entry-card:hover .enter-text::before {
+.works-container .creative-entry-card:hover .enter-label {
+	color: #111;
+	border-bottom: 2px solid #111;
+}
+
+.works-container .creative-entry-card:hover .creative-entry-text::before {
 	content: "▶ ";
+	font-weight: bold;
+	opacity: 0.8;
+}
+
+@media (max-width: 700px) {
+	.works-container .creative-entry-card {
+		flex-direction: row;
+		height: auto;
+		padding: 20px;
+		gap: 16px;
+	}
+
+	.works-container .creative-entry-icon {
+		font-size: 56px;
+	}
+
+	.works-container .creative-entry-content {
+		align-items: flex-start;
+		width: 100%;
+	}
+
+	.works-container .creative-entry-text {
+		margin-top: 8px;
+		align-self: flex-start;
+	}
+
+	.enter-label {
+		margin-top: 10px;
+	}
 }
