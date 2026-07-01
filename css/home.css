@@ -144,6 +144,14 @@ body.home {
 	animation: speechIntro 0.8s ease-out;
 }
 
+.player-speech.mobile {
+	font-size: 18px;
+	padding: 10px 16px;
+	line-height: 1.6;
+
+	transform: translateX(-50%) scale(1);
+}
+
 .player-speech::after {
 	content: "";
 	position: absolute;

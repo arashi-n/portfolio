@@ -39,6 +39,11 @@ let currentBuilding = 0;
 // ====================
 const isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0;
 
+if (speech && isTouchDevice) {
+	speech.innerHTML = "Drag to move<br>Tap a building";
+	speech.classList.add("mobile");
+}
+
 const speed = 3;
 let lastTime = performance.now();
 
