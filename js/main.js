@@ -74,19 +74,19 @@ document.addEventListener("keyup", (e) => {
 	keys[e.key] = false;
 });
 
-// if (isTouchDevice && map) {
-// 	map.addEventListener("pointerdown", (e) => {
-// 		dragging = true;
-// 		startX = e.clientX;
-// 		startY = e.clientY;
-// 	});
-
-if (map) {
+if (isTouchDevice && map) {
 	map.addEventListener("pointerdown", (e) => {
 		dragging = true;
 		startX = e.clientX;
 		startY = e.clientY;
 	});
+
+	// if (map) {
+	// 	map.addEventListener("pointerdown", (e) => {
+	// 		dragging = true;
+	// 		startX = e.clientX;
+	// 		startY = e.clientY;
+	// 	});
 
 	map.addEventListener("pointermove", (e) => {
 		if (!dragging) return;
