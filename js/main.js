@@ -7,7 +7,13 @@ const input = {
 	left: false,
 	right: false,
 };
+
+let dragging = false;
+let startX = 0;
+let startY = 0;
+
 const player = document.querySelector(".player");
+const map = document.querySelector(".game-world");
 const playerImg = document.querySelector(".player img");
 const speech = document.querySelector(".player-speech");
 
@@ -29,11 +35,12 @@ let currentBuilding = 0;
 // ====================
 // 定数
 // ====================
+const isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+
 const speed = 3;
 let lastTime = performance.now();
 
 const keys = {};
-const touch = {};
 
 const walkFrames = ["./assets/player_walk1.png", "./assets/player_walk2.png"];
 
@@ -46,6 +53,8 @@ const buildings = [
 	{ el: document.querySelector(".skill-tree-hit"), link: "skills.html" },
 	{ el: document.querySelector(".mailbox-hit"), link: "contact.html" },
 ];
+
+if (!player) console.error("player not found");
 
 const animatedBuildings = [
 	document.querySelector(".castle"),
@@ -65,6 +74,36 @@ document.addEventListener("keyup", (e) => {
 	keys[e.key] = false;
 });
 
+if (isTouchDevice && map) {
+	map.addEventListener("pointerdown", (e) => {
+		dragging = true;
+		startX = e.clientX;
+		startY = e.clientY;
+	});
+
+	map.addEventListener("pointermove", (e) => {
+		if (!dragging) return;
+
+		const dx = e.clientX - startX;
+		const dy = e.clientY - startY;
+
+		const sensitivity = 0.2;
+
+		x += dx * sensitivity;
+		y += dy * sensitivity;
+
+		startX = e.clientX;
+		startY = e.clientY;
+	});
+
+	map.addEventListener("pointerup", () => {
+		dragging = false;
+	});
+
+	map.addEventListener("pointerleave", () => {
+		dragging = false;
+	});
+}
 // ====================
 // 関数
 // ====================
@@ -131,12 +170,18 @@ function update(timestamp) {
 	lastTime = timestamp;
 
 	// プレイヤー移動
-	let prevX = x;
+	const prevX = x;
 
 	if (input.up) y -= speed * delta;
 	if (input.down) y += speed * delta;
 	if (input.left) x -= speed * delta;
 	if (input.right) x += speed * delta;
+
+	if (x < prevX) {
+		player.classList.remove("left");
+	} else if (x > prevX) {
+		player.classList.add("left");
+	}
 
 	if (keys["ArrowLeft"] || keys["a"]) {
 		player.classList.remove("left");
@@ -149,13 +194,6 @@ function update(timestamp) {
 	player.style.left = x + "px";
 	player.style.top = y + "px";
 
-	// 向き変更
-	if (x < prevX) {
-		player.classList.remove("left");
-	} else if (x > prevX) {
-		player.classList.add("left");
-	}
-
 	// 吹き出し更新
 	if (speech && !speechHidden) {
 		speech.style.left = x + "px";
@@ -163,7 +201,8 @@ function update(timestamp) {
 	}
 
 	// 移動判定
-	const isMoving = input.up || input.down || input.left || input.right;
+	const isMoving =
+		input.up || input.down || input.left || input.right || dragging;
 
 	if (isMoving && speech) {
 		hideSpeech();
@@ -214,24 +253,6 @@ function update(timestamp) {
 	requestAnimationFrame(update);
 }
 
-function bindTouch(id, key) {
-	const btn = document.getElementById(id);
-
-	btn.addEventListener("touchstart", (e) => {
-		e.preventDefault();
-		touch[key] = true;
-	});
-
-	btn.addEventListener("touchend", () => {
-		touch[key] = false;
-	});
-}
-
-bindTouch("up", "ArrowUp");
-bindTouch("down", "ArrowDown");
-bindTouch("left", "ArrowLeft");
-bindTouch("right", "ArrowRight");
-
 window.addEventListener("keydown", (e) => {
 	if (e.key === "ArrowUp" || e.key === "w") input.up = true;
 	if (e.key === "ArrowDown" || e.key === "s") input.down = true;
@@ -246,32 +267,6 @@ window.addEventListener("keyup", (e) => {
 	if (e.key === "ArrowRight" || e.key === "d") input.right = false;
 });
 
-function setupMobileControls() {
-	const bind = (id, key) => {
-		const btn = document.getElementById(id);
-
-		if (!btn) return;
-
-		btn.addEventListener("pointerdown", (e) => {
-			e.preventDefault();
-			input[key] = true;
-		});
-
-		btn.addEventListener("pointerup", () => {
-			input[key] = false;
-		});
-
-		btn.addEventListener("pointerleave", () => {
-			input[key] = false;
-		});
-	};
-
-	bind("up", "up");
-	bind("down", "down");
-	bind("left", "left");
-	bind("right", "right");
-}
-
 // ====================
 // 演出
 // ====================
@@ -281,4 +276,3 @@ setInterval(animateBuildings, 1500);
 // 初期化
 // ====================
 requestAnimationFrame(update);
-setupMobileControls();
