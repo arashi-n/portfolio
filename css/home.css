@@ -145,9 +145,9 @@ body.home {
 }
 
 .player-speech.mobile {
-	font-size: 18px;
-	padding: 10px 16px;
-	line-height: 1.6;
+	font-size: 20px;
+	padding: 14px 18px;
+	line-height: 1.7;
 
 	transform: translateX(-50%) scale(1);
 }
