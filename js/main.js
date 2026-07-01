@@ -28,6 +28,8 @@ let y = 595;
 let frameTimer = 0;
 let frameIndex = 0;
 
+let lastAnimationTime = 0;
+
 let isTransitioning = false;
 
 let currentBuilding = 0;
@@ -43,6 +45,8 @@ let lastTime = performance.now();
 const keys = {};
 
 const walkFrames = ["./assets/player_walk1.png", "./assets/player_walk2.png"];
+
+const WALK_FRAME_INTERVAL = 120;
 
 // ====================
 // 建物データ
@@ -232,15 +236,14 @@ function update(timestamp) {
 
 	// 歩行アニメーション
 	if (isMoving) {
-		frameTimer++;
+		if (timestamp - lastAnimationTime >= WALK_FRAME_INTERVAL) {
+			lastAnimationTime = timestamp;
 
-		if (frameTimer > 20) {
-			frameTimer = 0;
 			frameIndex = (frameIndex + 1) % walkFrames.length;
-
 			playerImg.src = walkFrames[frameIndex];
 		}
 	} else {
+		frameIndex = 0;
 		playerImg.src = "./assets/player_idle.png";
 	}
 
