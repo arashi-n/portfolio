@@ -186,10 +186,10 @@ body.home {
 .player-speech.mobile {
 	font-size: 26px;
 	padding: 18px 14px;
-	line-height: 2;
+	line-height: 1.8;
 
 	white-space: normal;
-	max-width: 160px;
+	max-width: 320px;
 
 	transform: translateX(-50%) scale(1);
 	animation: speechIntroMobile 0.8s ease-out;
