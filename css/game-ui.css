@@ -86,12 +86,10 @@
 @media (max-width: 768px) {
 	.menu-btn {
 		display: block;
-		font-family: "PixelMplus12", monospace;
 	}
 
 	.game-nav {
 		display: none;
-		font-family: "PixelMplus12", monospace;
 	}
 
 	.game-nav.open {
