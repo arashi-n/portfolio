@@ -84,7 +84,7 @@ document.addEventListener("keyup", (e) => {
 });
 
 if (isTouchDevice && map) {
-	map.addEventListener("pointerdown", (e) => {
+	document.addEventListener("pointerdown", (e) => {
 		dragging = true;
 		startX = e.clientX;
 		startY = e.clientY;
@@ -92,13 +92,13 @@ if (isTouchDevice && map) {
 
 	// 確認用
 	// if (map) {
-	// 	map.addEventListener("pointerdown", (e) => {
+	// 	document.addEventListener("pointerdown", (e) => {
 	// 		dragging = true;
 	// 		startX = e.clientX;
 	// 		startY = e.clientY;
 	// 	});
 
-	map.addEventListener("pointermove", (e) => {
+	document.addEventListener("pointermove", (e) => {
 		if (!dragging) return;
 
 		const dx = e.clientX - startX;
@@ -118,7 +118,7 @@ if (isTouchDevice && map) {
 		if (dy < -deadZone) input.up = true;
 	});
 
-	map.addEventListener("pointerup", () => {
+	document.addEventListener("pointerup", () => {
 		dragging = false;
 
 		input.up = false;
@@ -127,7 +127,7 @@ if (isTouchDevice && map) {
 		input.right = false;
 	});
 
-	map.addEventListener("pointerleave", () => {
+	document.addEventListener("pointerleave", () => {
 		dragging = false;
 
 		input.up = false;
