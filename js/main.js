@@ -13,9 +13,10 @@ let startX = 0;
 let startY = 0;
 
 const player = document.querySelector(".player");
-const map = document.querySelector(".game-world");
 const playerImg = document.querySelector(".player img");
 const speech = document.querySelector(".player-speech");
+const map = document.querySelector(".game-world");
+const wrapper = document.querySelector(".game-wrapper");
 
 // ====================
 // 状態管理
@@ -83,28 +84,20 @@ document.addEventListener("keyup", (e) => {
 	keys[e.key] = false;
 });
 
-if (isTouchDevice && map) {
-	map.addEventListener("pointerdown", (e) => {
+if (isTouchDevice && wrapper) {
+	wrapper.addEventListener("pointerdown", (e) => {
 		dragging = true;
 		startX = e.clientX;
 		startY = e.clientY;
 	});
 
-	// 確認用
-	// if (map) {
-	// 	map.addEventListener("pointerdown", (e) => {
-	// 		dragging = true;
-	// 		startX = e.clientX;
-	// 		startY = e.clientY;
-	// 	});
-
-	map.addEventListener("pointermove", (e) => {
+	wrapper.addEventListener("pointermove", (e) => {
 		if (!dragging) return;
 
 		const dx = e.clientX - startX;
 		const dy = e.clientY - startY;
 
-		const deadZone = 25;
+		const deadZone = 5;
 
 		input.up = false;
 		input.down = false;
@@ -118,7 +111,9 @@ if (isTouchDevice && map) {
 		if (dy < -deadZone) input.up = true;
 	});
 
-	map.addEventListener("pointerup", () => {
+	document.addEventListener("pointerup", () => {
+		console.log("UP");
+
 		dragging = false;
 
 		input.up = false;
