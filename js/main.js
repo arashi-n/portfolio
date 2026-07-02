@@ -112,48 +112,8 @@ if (isTouchDevice) {
 	document.addEventListener("pointermove", (e) => {
 		if (!dragging) return;
 
-		const dx = e.clientX - startX;
-		const dy = e.clientY - startY;
-
-		const deadZone = 25;
-
-		input.up = false;
-		input.down = false;
-		input.left = false;
-		input.right = false;
-
-		if (dx > deadZone) input.right = true;
-		if (dx < -deadZone) input.left = true;
-
-		if (dy > deadZone) input.down = true;
-		if (dy < -deadZone) input.up = true;
-	});
-
-	document.addEventListener("pointerup", () => {
-		dragging = false;
-
-		input.up = false;
-		input.down = false;
-		input.left = false;
-		input.right = false;
-	});
-
-	document.addEventListener("pointerleave", () => {
-		dragging = false;
-
-		input.up = false;
-		input.down = false;
-		input.left = false;
-		input.right = false;
-	});
-
-	document.addEventListener("pointercancel", () => {
-		dragging = false;
-
-		input.up = false;
-		input.down = false;
-		input.left = false;
-		input.right = false;
+		currentX = e.clientX;
+		currentY = e.clientY;
 	});
 }
 
@@ -246,6 +206,25 @@ function update(timestamp) {
 
 	player.style.left = x + "px";
 	player.style.top = y + "px";
+
+	// ドラッグ入力の計算
+	if (dragging) {
+		const dx = currentX - startX;
+		const dy = currentY - startY;
+
+		const deadZone = 25;
+
+		input.up = false;
+		input.down = false;
+		input.left = false;
+		input.right = false;
+
+		if (dx > deadZone) input.right = true;
+		if (dx < -deadZone) input.left = true;
+
+		if (dy > deadZone) input.down = true;
+		if (dy < -deadZone) input.up = true;
+	}
 
 	// 吹き出し更新
 	if (speech && !speechHidden) {
