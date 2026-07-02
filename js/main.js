@@ -9,16 +9,23 @@ const input = {
 };
 
 let dragging = false;
-let startX = 0;
-let startY = 0;
-
-let currentX = 0;
-let currentY = 0;
 
 const player = document.querySelector(".player");
 const map = document.querySelector(".game-world");
 const playerImg = document.querySelector(".player img");
 const speech = document.querySelector(".player-speech");
+const inputState = {
+	active: false,
+	x: 0,
+	y: 0,
+	startX: 0,
+	startY: 0,
+};
+const STICK_RADIUS = 80;
+const DEAD_ZONE = 18;
+
+let velocityX = 0;
+let velocityY = 0;
 
 // ====================
 // 状態管理
@@ -88,6 +95,8 @@ document.addEventListener("keyup", (e) => {
 
 const endDrag = () => {
 	dragging = false;
+	inputState.active = false;
+
 	input.up = false;
 	input.down = false;
 	input.left = false;
@@ -100,33 +109,21 @@ document.addEventListener("pointercancel", endDrag);
 if (isTouchDevice) {
 	document.addEventListener("pointerdown", (e) => {
 		dragging = true;
-		startX = e.clientX;
-		startY = e.clientY;
 
-		currentX = e.clientX;
-		currentY = e.clientY;
+		inputState.active = true;
+		inputState.startX = e.clientX;
+		inputState.startY = e.clientY;
+
+		inputState.x = e.clientX;
+		inputState.y = e.clientY;
 	});
 
-	// 確認用
-	// if (map) {
-	// 	document.addEventListener("pointerdown", (e) => {
-	// 		dragging = true;
-	// 		startX = e.clientX;
-	// 		startY = e.clientY;
-	// 	});
+	document.addEventListener("pointermove", (e) => {
+		if (!dragging) return;
 
-	document.addEventListener(
-		"pointermove",
-		(e) => {
-			if (!dragging) return;
-
-			e.preventDefault?.();
-
-			currentX = e.clientX;
-			currentY = e.clientY;
-		},
-		{ passive: false },
-	);
+		inputState.x = e.clientX;
+		inputState.y = e.clientY;
+	});
 }
 
 // ====================
@@ -194,13 +191,19 @@ function update(timestamp) {
 	const delta = (timestamp - lastTime) / 16.67;
 	lastTime = timestamp;
 
-	// プレイヤー移動
-	const prevX = x;
+	// 加速
+	if (input.up) velocityY -= speed;
+	if (input.down) velocityY += speed;
+	if (input.left) velocityX -= speed;
+	if (input.right) velocityX += speed;
 
-	if (input.up) y -= speed * delta;
-	if (input.down) y += speed * delta;
-	if (input.left) x -= speed * delta;
-	if (input.right) x += speed * delta;
+	// 慣性（減衰）
+	velocityX *= 0.85;
+	velocityY *= 0.85;
+
+	// 反映
+	x += velocityX;
+	y += velocityY;
 
 	if (x < prevX) {
 		player.classList.remove("left");
@@ -220,22 +223,24 @@ function update(timestamp) {
 	player.style.top = y + "px";
 
 	// ドラッグ入力の計算
-	if (dragging) {
-		const dx = currentX - startX;
-		const dy = currentY - startY;
+	if (inputState.active) {
+		const dx = inputState.x - inputState.startX;
+		const dy = inputState.y - inputState.startY;
 
-		const deadZone = 25;
+		const distance = Math.sqrt(dx * dx + dy * dy);
 
-		input.up = false;
-		input.down = false;
-		input.left = false;
-		input.right = false;
+		if (distance < DEAD_ZONE) {
+			input.up = input.down = input.left = input.right = false;
+		} else {
+			const angle = Math.atan2(dy, dx);
 
-		if (dx > deadZone) input.right = true;
-		if (dx < -deadZone) input.left = true;
-
-		if (dy > deadZone) input.down = true;
-		if (dy < -deadZone) input.up = true;
+			input.right = Math.cos(angle) > 0.35;
+			input.left = Math.cos(angle) < -0.35;
+			input.down = Math.sin(angle) > 0.35;
+			input.up = Math.sin(angle) < -0.35;
+		}
+	} else {
+		input.up = input.down = input.left = input.right = false;
 	}
 
 	// 吹き出し更新
