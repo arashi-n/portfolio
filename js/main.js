@@ -89,14 +89,14 @@ if (isTouchDevice && wrapper) {
 		dragging = true;
 		startX = e.clientX;
 		startY = e.clientY;
+
+		if (speech) {
+			speech.style.display = "block";
+			speech.innerHTML = e.target.className;
+		}
 	});
 
 	wrapper.addEventListener("pointermove", (e) => {
-		if (speech) {
-			speech.style.display = "block";
-			speech.innerHTML = `MOVE<br>${Math.round(e.clientX)}, ${Math.round(e.clientY)}`;
-		}
-
 		if (!dragging) return;
 
 		const dx = e.clientX - startX;
