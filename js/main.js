@@ -92,6 +92,8 @@ if (isTouchDevice && wrapper) {
 	});
 
 	wrapper.addEventListener("pointermove", (e) => {
+		document.title = `MOVE ${Math.round(e.clientX)},${Math.round(e.clientY)}`;
+
 		if (!dragging) return;
 
 		const dx = e.clientX - startX;
