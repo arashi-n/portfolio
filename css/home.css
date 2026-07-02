@@ -4,6 +4,13 @@
 @font-face {
 	font-family: "PressStart2P";
 	src: url("../fonts/PressStart2P-Regular.ttf") format("truetype");
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "PixelMplus12";
+	src: url("../fonts/PixelMplus12-Regular.ttf") format("truetype");
+	font-display: swap;
 }
 
 /* =====================
@@ -93,7 +100,7 @@ body.home {
 	top: 26%;
 	left: 50%;
 	transform: translateX(-50%);
-	font-family: "PixelMplus12";
+	font-family: "PixelMplus12", monospace;
 	font-size: 50px;
 	color: #333;
 	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
@@ -132,7 +139,7 @@ body.home {
 	padding: 6px 10px;
 
 	font-size: 12px;
-	font-family: "PressStart2P", sans-serif;
+	font-family: "PressStart2P", monospace;
 	text-align: center;
 	line-height: 1.8;
 	white-space: nowrap;
@@ -177,12 +184,12 @@ body.home {
 }
 
 .player-speech.mobile {
-	font-size: 24px;
-	padding: 16px 18px;
-	line-height: 1.7;
+	font-size: 26px;
+	padding: 18px 14px;
+	line-height: 2;
 
 	white-space: normal;
-	max-width: 200px;
+	max-width: 160px;
 
 	transform: translateX(-50%) scale(1);
 	animation: speechIntroMobile 0.8s ease-out;

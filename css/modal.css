@@ -106,7 +106,7 @@
 }
 
 .modal-links a {
-	font-family: "PixelMplus12";
+	font-family: "PixelMplus12", monospace;
 	display: block;
 
 	padding: 16px 20px;
