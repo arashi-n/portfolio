@@ -9,23 +9,13 @@ const input = {
 };
 
 let dragging = false;
+let startX = 0;
+let startY = 0;
 
 const player = document.querySelector(".player");
 const map = document.querySelector(".game-world");
 const playerImg = document.querySelector(".player img");
 const speech = document.querySelector(".player-speech");
-const inputState = {
-	active: false,
-	x: 0,
-	y: 0,
-	startX: 0,
-	startY: 0,
-};
-const STICK_RADIUS = 80;
-const DEAD_ZONE = 18;
-
-let velocityX = 0;
-let velocityY = 0;
 
 // ====================
 // 状態管理
@@ -131,18 +121,14 @@ if (isTouchDevice && map) {
 		map.addEventListener("pointerup", () => {
 			dragging = false;
 
-		input.up = false;
-		input.down = false;
-		input.left = false;
-		input.right = false;
-	};
+			input.up = false;
+			input.down = false;
+			input.left = false;
+			input.right = false;
+		});
 
-	document.addEventListener("pointerup", endDrag);
-document.addEventListener("pointercancel", endDrag);
-
-if (isTouchDevice) {
-	document.addEventListener("pointerdown", (e) => {
-			dragging = true;
+		map.addEventListener("pointerleave", () => {
+			dragging = false;
 
 			input.up = false;
 			input.down = false;
@@ -151,7 +137,6 @@ if (isTouchDevice) {
 		});
 	}
 }
-
 // ====================
 // 関数
 // ====================
@@ -217,19 +202,13 @@ function update(timestamp) {
 	const delta = (timestamp - lastTime) / 16.67;
 	lastTime = timestamp;
 
-	// 加速
-	if (input.up) velocityY -= speed;
-	if (input.down) velocityY += speed;
-	if (input.left) velocityX -= speed;
-	if (input.right) velocityX += speed;
+	// プレイヤー移動
+	const prevX = x;
 
-	// 慣性（減衰）
-	velocityX *= 0.85;
-	velocityY *= 0.85;
-
-	// 反映
-	x += velocityX;
-	y += velocityY;
+	if (input.up) y -= speed * delta;
+	if (input.down) y += speed * delta;
+	if (input.left) x -= speed * delta;
+	if (input.right) x += speed * delta;
 
 	if (x < prevX) {
 		player.classList.remove("left");
@@ -247,27 +226,6 @@ function update(timestamp) {
 
 	player.style.left = x + "px";
 	player.style.top = y + "px";
-
-	// ドラッグ入力の計算
-	if (inputState.active) {
-		const dx = inputState.x - inputState.startX;
-		const dy = inputState.y - inputState.startY;
-
-		const distance = Math.sqrt(dx * dx + dy * dy);
-
-		if (distance < DEAD_ZONE) {
-			input.up = input.down = input.left = input.right = false;
-		} else {
-			const angle = Math.atan2(dy, dx);
-
-			input.right = Math.cos(angle) > 0.35;
-			input.left = Math.cos(angle) < -0.35;
-			input.down = Math.sin(angle) > 0.35;
-			input.up = Math.sin(angle) < -0.35;
-		}
-	} else {
-		input.up = input.down = input.left = input.right = false;
-	}
 
 	// 吹き出し更新
 	if (speech && !speechHidden) {
