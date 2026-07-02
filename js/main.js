@@ -227,7 +227,7 @@ function update(timestamp) {
 
 	// 吹き出し更新
 	if (speech && !speechHidden) {
-		const speechOffset = isTouchDevice ? 150 : 70;
+		const speechOffset = isTouchDevice ? 180 : 70;
 
 		speech.style.left = x + "px";
 		speech.style.top = y - speechOffset + "px";
