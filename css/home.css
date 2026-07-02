@@ -144,14 +144,6 @@ body.home {
 	animation: speechIntro 0.8s ease-out;
 }
 
-.player-speech.mobile {
-	font-size: 20px;
-	padding: 14px 18px;
-	line-height: 1.7;
-
-	transform: translateX(-50%) scale(1);
-}
-
 .player-speech::after {
 	content: "";
 	position: absolute;
@@ -180,6 +172,35 @@ body.home {
 	100% {
 		opacity: 1;
 		transform: translateX(-50%) scale(0.8, 1.2);
+		box-shadow: none;
+	}
+}
+
+.player-speech.mobile {
+	font-size: 24px;
+	padding: 16px 20px;
+	line-height: 1.7;
+
+	transform: translateX(-50%) scale(1);
+
+	animation: speechIntroMobile 0.8s ease-out;
+}
+
+@keyframes speechIntroMobile {
+	0% {
+		opacity: 0;
+		transform: translateX(-50%) scale(1);
+	}
+
+	50% {
+		opacity: 1;
+		transform: translateX(-50%) scale(1.08);
+		box-shadow: 0 0 12px rgba(255, 255, 255, 0.9);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateX(-50%) scale(1);
 		box-shadow: none;
 	}
 }
