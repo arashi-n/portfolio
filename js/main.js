@@ -89,6 +89,8 @@ if (isTouchDevice && wrapper) {
 		dragging = true;
 		startX = e.clientX;
 		startY = e.clientY;
+
+		wrapper.setPointerCapture(e.pointerId);
 	});
 
 	wrapper.addEventListener("pointermove", (e) => {
@@ -111,7 +113,7 @@ if (isTouchDevice && wrapper) {
 		if (dy < -deadZone) input.up = true;
 	});
 
-	document.addEventListener("pointerup", () => {
+	document.addEventListener("pointerup", (e) => {
 		console.log("UP");
 
 		dragging = false;
@@ -120,6 +122,10 @@ if (isTouchDevice && wrapper) {
 		input.down = false;
 		input.left = false;
 		input.right = false;
+
+		if (wrapper.hasPointerCapture(e.pointerId)) {
+			wrapper.releasePointerCapture(e.pointerId);
+		}
 	});
 
 	map.addEventListener("pointerleave", () => {
