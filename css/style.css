@@ -17,6 +17,21 @@ img {
 }
 
 /* =====================
+    フォント
+===================== */
+@font-face {
+	font-family: "PressStart2P";
+	src: url("../fonts/PressStart2P-Regular.ttf") format("truetype");
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "PixelMplus12";
+	src: url("../fonts/PixelMplus12-Regular.ttf") format("truetype");
+	font-display: swap;
+}
+
+/* =====================
     共通設定
 ===================== */
 html,

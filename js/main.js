@@ -84,57 +84,58 @@ document.addEventListener("keyup", (e) => {
 });
 
 if (isTouchDevice && map) {
-	map.addEventListener("pointerdown", (e) => {
-		dragging = true;
-		startX = e.clientX;
-		startY = e.clientY;
-	});
+	// map.addEventListener("pointerdown", (e) => {
+	// 	dragging = true;
+	// 	startX = e.clientX;
+	// 	startY = e.clientY;
+	// });
 
 	// 確認用
-	// if (map) {
-	// 	map.addEventListener("pointerdown", (e) => {
-	// 		dragging = true;
-	// 		startX = e.clientX;
-	// 		startY = e.clientY;
-	// 	});
+	if (map) {
+		map.addEventListener("pointerdown", (e) => {
+			dragging = true;
+			startX = e.clientX;
+			startY = e.clientY;
+		});
 
-	map.addEventListener("pointermove", (e) => {
-		if (!dragging) return;
+		map.addEventListener("pointermove", (e) => {
+			if (!dragging) return;
 
-		const dx = e.clientX - startX;
-		const dy = e.clientY - startY;
+			const dx = e.clientX - startX;
+			const dy = e.clientY - startY;
 
-		const deadZone = 25;
+			const deadZone = 25;
 
-		input.up = false;
-		input.down = false;
-		input.left = false;
-		input.right = false;
+			input.up = false;
+			input.down = false;
+			input.left = false;
+			input.right = false;
 
-		if (dx > deadZone) input.right = true;
-		if (dx < -deadZone) input.left = true;
+			if (dx > deadZone) input.right = true;
+			if (dx < -deadZone) input.left = true;
 
-		if (dy > deadZone) input.down = true;
-		if (dy < -deadZone) input.up = true;
-	});
+			if (dy > deadZone) input.down = true;
+			if (dy < -deadZone) input.up = true;
+		});
 
-	map.addEventListener("pointerup", () => {
-		dragging = false;
+		map.addEventListener("pointerup", () => {
+			dragging = false;
 
-		input.up = false;
-		input.down = false;
-		input.left = false;
-		input.right = false;
-	});
+			input.up = false;
+			input.down = false;
+			input.left = false;
+			input.right = false;
+		});
 
-	map.addEventListener("pointerleave", () => {
-		dragging = false;
+		map.addEventListener("pointerleave", () => {
+			dragging = false;
 
-		input.up = false;
-		input.down = false;
-		input.left = false;
-		input.right = false;
-	});
+			input.up = false;
+			input.down = false;
+			input.left = false;
+			input.right = false;
+		});
+	}
 }
 // ====================
 // 関数
