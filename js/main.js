@@ -83,7 +83,18 @@ document.addEventListener("keyup", (e) => {
 	keys[e.key] = false;
 });
 
-if (isTouchDevice && map) {
+const endDrag = () => {
+	dragging = false;
+	input.up = false;
+	input.down = false;
+	input.left = false;
+	input.right = false;
+};
+
+document.addEventListener("pointerup", endDrag);
+document.addEventListener("pointercancel", endDrag);
+
+if (isTouchDevice) {
 	document.addEventListener("pointerdown", (e) => {
 		dragging = true;
 		startX = e.clientX;
@@ -135,7 +146,17 @@ if (isTouchDevice && map) {
 		input.left = false;
 		input.right = false;
 	});
+
+	document.addEventListener("pointercancel", () => {
+		dragging = false;
+
+		input.up = false;
+		input.down = false;
+		input.left = false;
+		input.right = false;
+	});
 }
+
 // ====================
 // 関数
 // ====================
