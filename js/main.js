@@ -12,6 +12,9 @@ let dragging = false;
 let startX = 0;
 let startY = 0;
 
+let currentX = 0;
+let currentY = 0;
+
 const player = document.querySelector(".player");
 const map = document.querySelector(".game-world");
 const playerImg = document.querySelector(".player img");
@@ -99,6 +102,9 @@ if (isTouchDevice) {
 		dragging = true;
 		startX = e.clientX;
 		startY = e.clientY;
+
+		currentX = e.clientX;
+		currentY = e.clientY;
 	});
 
 	// 確認用
@@ -109,12 +115,18 @@ if (isTouchDevice) {
 	// 		startY = e.clientY;
 	// 	});
 
-	document.addEventListener("pointermove", (e) => {
-		if (!dragging) return;
+	document.addEventListener(
+		"pointermove",
+		(e) => {
+			if (!dragging) return;
 
-		currentX = e.clientX;
-		currentY = e.clientY;
-	});
+			e.preventDefault?.();
+
+			currentX = e.clientX;
+			currentY = e.clientY;
+		},
+		{ passive: false },
+	);
 }
 
 // ====================
