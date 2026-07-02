@@ -89,8 +89,6 @@ if (isTouchDevice && wrapper) {
 		dragging = true;
 		startX = e.clientX;
 		startY = e.clientY;
-
-		wrapper.setPointerCapture(e.pointerId);
 	});
 
 	wrapper.addEventListener("pointermove", (e) => {
@@ -113,7 +111,7 @@ if (isTouchDevice && wrapper) {
 		if (dy < -deadZone) input.up = true;
 	});
 
-	document.addEventListener("pointerup", (e) => {
+	document.addEventListener("pointerup", () => {
 		console.log("UP");
 
 		dragging = false;
@@ -122,10 +120,6 @@ if (isTouchDevice && wrapper) {
 		input.down = false;
 		input.left = false;
 		input.right = false;
-
-		if (wrapper.hasPointerCapture(e.pointerId)) {
-			wrapper.releasePointerCapture(e.pointerId);
-		}
 	});
 
 	map.addEventListener("pointerleave", () => {
@@ -148,6 +142,8 @@ function resizeGame() {
 	const vh = window.innerHeight;
 
 	const scale = Math.min(vw / 1920, vh / 1080);
+
+	document.title = `scale=${scale}`;
 
 	game.style.transform = `translate(-50%, -50%) scale(${scale})`;
 }
