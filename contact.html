@@ -15,11 +15,36 @@
 
 		<img src="./assets/background.png" alt="" class="background" />
 
-		<p class="coming-soon">
-			<span>準</span>
-			<span>備</span>
-			<span>中</span>
-		</p>
+		<main>
+			<div class="contact-container">
+				<div class="contact-panel">
+					<h1>Contact</h1>
+					<form class="contact-form">
+						<div class="form-group">
+							<label for="name">Name</label>
+							<input type="text" id="name" name="name" />
+						</div>
+
+						<div class="form-group">
+							<label for="email">Email</label>
+							<input type="email" id="email" name="email" />
+						</div>
+
+						<div class="form-group">
+							<label for="subject">Subject</label>
+							<input type="text" id="subject" name="subject" />
+						</div>
+
+						<div class="form-group">
+							<label for="message">Message</label>
+							<textarea id="message" name="message"></textarea>
+						</div>
+
+						<button type="submit">SEND</button>
+					</form>
+				</div>
+			</div>
+		</main>
 
 		<div id="footer"></div>
 		<script src="./js/layout.js"></script>
