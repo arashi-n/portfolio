@@ -5,6 +5,8 @@
 	position: fixed;
 	inset: 0;
 	overflow: hidden;
+
+	touch-action: none;
 }
 
 .game-world {

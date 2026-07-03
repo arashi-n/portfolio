@@ -143,8 +143,6 @@ function resizeGame() {
 
 	const scale = Math.min(vw / 1920, vh / 1080);
 
-	document.title = `scale=${scale}`;
-
 	game.style.transform = `translate(-50%, -50%) scale(${scale})`;
 }
 
