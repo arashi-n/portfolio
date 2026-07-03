@@ -112,17 +112,6 @@ if (isTouchDevice && wrapper) {
 	});
 
 	document.addEventListener("pointerup", () => {
-		console.log("UP");
-
-		dragging = false;
-
-		input.up = false;
-		input.down = false;
-		input.left = false;
-		input.right = false;
-	});
-
-	map.addEventListener("pointerleave", () => {
 		dragging = false;
 
 		input.up = false;
@@ -196,11 +185,6 @@ function clampPlayer() {
 function update(timestamp) {
 	const delta = (timestamp - lastTime) / 16.67;
 	lastTime = timestamp;
-
-	if (speech) {
-		speech.style.display = "block";
-		speech.innerHTML = `U:${input.up} D:${input.down}<br>L:${input.left} R:${input.right}`;
-	}
 
 	// プレイヤー移動
 	const prevX = x;
