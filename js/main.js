@@ -89,11 +89,6 @@ if (isTouchDevice && wrapper) {
 		dragging = true;
 		startX = e.clientX;
 		startY = e.clientY;
-
-		if (speech) {
-			speech.style.display = "block";
-			speech.innerHTML = e.target.className;
-		}
 	});
 
 	wrapper.addEventListener("pointermove", (e) => {
@@ -203,6 +198,11 @@ function clampPlayer() {
 function update(timestamp) {
 	const delta = (timestamp - lastTime) / 16.67;
 	lastTime = timestamp;
+
+	if (speech) {
+		speech.style.display = "block";
+		speech.innerHTML = `U:${input.up} D:${input.down}<br>L:${input.left} R:${input.right}`;
+	}
 
 	// プレイヤー移動
 	const prevX = x;
