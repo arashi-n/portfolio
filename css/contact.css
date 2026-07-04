@@ -155,3 +155,19 @@ body {
 		margin-bottom: 18px;
 	}
 }
+
+.error-message {
+	min-height: 18px;
+
+	color: #ff6b6b;
+
+	font-size: 0.9rem;
+	font-family: "PixelMplus12", monospace;
+	line-height: 1.4;
+}
+
+.contact-form input.error,
+.contact-form textarea.error {
+	border-color: #ff6b6b;
+	box-shadow: 0 0 8px #ff6b6b;
+}
