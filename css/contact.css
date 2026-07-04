@@ -133,6 +133,7 @@ body {
 
 @media (max-width: 768px) {
 	.contact-panel {
+		margin-top: 120px;
 		padding: 20px 16px;
 	}
 
@@ -152,6 +153,6 @@ body {
 
 	.contact-form button {
 		width: 100%;
-		margin-top: 12px;
+		margin-bottom: 18px;
 	}
 }
