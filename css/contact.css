@@ -15,14 +15,14 @@ body {
 	justify-content: center;
 	align-items: center;
 
-	min-height: 100vh;
-	padding: 40px 20px;
+	padding: 0 20px;
 }
 
 .contact-panel {
 	position: relative;
 
-	width: min(88%, 800px);
+	width: 100%;
+	max-width: 800px;
 
 	padding: 56px;
 
@@ -133,8 +133,6 @@ body {
 
 @media (max-width: 768px) {
 	.contact-panel {
-		margin-top: 100px;
-		margin-bottom: 100px;
 		padding: 20px 16px;
 	}
 
