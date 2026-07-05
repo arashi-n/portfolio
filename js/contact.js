@@ -16,6 +16,9 @@ const defaultButtonText = submitButton.textContent;
 const GAS_URL =
 	"https://script.google.com/macros/s/AKfycbzzrsFMwJxpGv9iT2pZ2Y6cgc2OuE1aqmWGgL6bLi0O1nGFGkAMGTNMsrCj1NnwWh3F/exec";
 
+// ----------------------
+// エラー関連
+// ----------------------
 function clearErrors() {
 	nameError.textContent = "";
 	emailError.textContent = "";
@@ -35,11 +38,52 @@ clearFieldError(emailInput, emailError);
 clearFieldError(subjectInput, subjectError);
 clearFieldError(messageInput, messageError);
 
+// ----------------------
+// バリデーション
+// ----------------------
 function isValidEmail(email) {
 	const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 	return regex.test(email);
 }
 
+// ----------------------
+// UI状態管理
+// ----------------------
+function setLoadingState(isLoading) {
+	submitButton.disabled = isLoading;
+	submitButton.textContent = isLoading ? "SENDING..." : defaultButtonText;
+}
+
+// ----------------------
+// モーダル
+// ----------------------
+function showSuccessModal() {
+	openModal("contact-success");
+}
+
+function showErrorModal() {
+	openModal("contact-error");
+}
+
+// ----------------------
+// 通信処理（GAS）
+// ----------------------
+async function sendContact(formData) {
+	const res = await fetch(GAS_URL, {
+		method: "POST",
+		body: JSON.stringify(formData),
+	});
+
+	if (!res.ok) {
+		throw new Error("Request failed");
+	}
+
+	return res;
+}
+
+// ----------------------
+// メイン送信処理
+// ----------------------
 form.addEventListener("submit", async (event) => {
 	event.preventDefault();
 
@@ -53,47 +97,42 @@ form.addEventListener("submit", async (event) => {
 	let hasError = false;
 	let firstError = null;
 
+	// validation
 	if (name === "") {
 		nameError.textContent = "Please enter your name.";
 		nameInput.classList.add("error");
 		hasError = true;
-
-		if (!firstError) firstError = nameInput;
+		firstError = firstError || nameInput;
 	}
 
 	if (email === "") {
 		emailError.textContent = "Please enter your email address.";
 		emailInput.classList.add("error");
 		hasError = true;
-
-		if (!firstError) firstError = emailInput;
+		firstError = firstError || emailInput;
 	} else if (!isValidEmail(email)) {
 		emailError.textContent = "Please enter a valid email address.";
 		emailInput.classList.add("error");
 		hasError = true;
-
-		if (!firstError) firstError = emailInput;
+		firstError = firstError || emailInput;
 	}
 
 	if (subject.length > 100) {
 		subjectError.textContent = "Subject must be 100 characters or less.";
 		hasError = true;
-
-		if (!firstError) firstError = subjectInput;
+		firstError = firstError || subjectInput;
 	}
 
 	if (message === "") {
 		messageError.textContent = "Please enter your message.";
 		messageInput.classList.add("error");
 		hasError = true;
-
-		if (!firstError) firstError = messageInput;
+		firstError = firstError || messageInput;
 	} else if (message.length < 10) {
 		messageError.textContent = "Message must be at least 10 characters.";
 		messageInput.classList.add("error");
 		hasError = true;
-
-		if (!firstError) firstError = messageInput;
+		firstError = firstError || messageInput;
 	}
 
 	if (hasError) {
@@ -101,40 +140,24 @@ form.addEventListener("submit", async (event) => {
 		return;
 	}
 
-	submitButton.disabled = true;
-	submitButton.textContent = "SENDING...";
+	const data = {
+		name,
+		email,
+		subject,
+		message,
+	};
 
 	try {
-		await sendContact();
+		setLoadingState(true);
+
+		await sendContact(data);
 
 		form.reset();
-
 		openModal("contact-success");
 	} catch (error) {
 		console.error(error);
-		alert("Failed to send message.");
+		openModal("contact-error");
 	} finally {
-		submitButton.disabled = false;
-		submitButton.textContent = defaultButtonText;
+		setLoadingState(false);
 	}
 });
-
-async function sendContact() {
-	const formData = new FormData();
-
-	formData.append("name", nameInput.value.trim());
-	formData.append("email", emailInput.value.trim());
-	formData.append("subject", subjectInput.value.trim());
-	formData.append("message", messageInput.value.trim());
-
-	const response = await fetch(GAS_URL, {
-		method: "POST",
-		body: formData,
-	});
-
-	if (!response.ok) {
-		throw new Error("Failed to send contact form.");
-	}
-
-	return await response.text();
-}
