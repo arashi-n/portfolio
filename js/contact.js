@@ -13,8 +13,20 @@ const messageError = document.getElementById("message-error");
 const submitButton = form.querySelector('button[type="submit"]');
 const defaultButtonText = submitButton.textContent;
 
+document.getElementById("success-close")?.addEventListener("click", () => {
+	const modal = document.getElementById("contact-success");
+	closeModal(modal);
+
+	document.getElementById("contact-form")?.scrollIntoView({
+		behavior: "smooth",
+		block: "start",
+	});
+});
+
 const GAS_URL =
 	"https://script.google.com/macros/s/AKfycbzzrsFMwJxpGv9iT2pZ2Y6cgc2OuE1aqmWGgL6bLi0O1nGFGkAMGTNMsrCj1NnwWh3F/exec";
+
+let isSubmitting = false;
 
 // ----------------------
 // エラー関連
@@ -50,6 +62,8 @@ function isValidEmail(email) {
 // UI状態管理
 // ----------------------
 function setLoadingState(isLoading) {
+	isSubmitting = isLoading;
+
 	submitButton.disabled = isLoading;
 	submitButton.textContent = isLoading ? "SENDING..." : defaultButtonText;
 }
@@ -59,6 +73,7 @@ function setLoadingState(isLoading) {
 // ----------------------
 function showSuccessModal() {
 	openModal("contact-success");
+	window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 function showErrorModal() {
@@ -86,6 +101,8 @@ async function sendContact(formData) {
 // ----------------------
 form.addEventListener("submit", async (event) => {
 	event.preventDefault();
+
+	if (isSubmitting) return;
 
 	clearErrors();
 
@@ -153,6 +170,7 @@ form.addEventListener("submit", async (event) => {
 		await sendContact(data);
 
 		form.reset();
+		clearErrors();
 		openModal("contact-success");
 	} catch (error) {
 		console.error(error);

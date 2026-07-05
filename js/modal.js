@@ -6,10 +6,6 @@ function openModal(id) {
 	if (modal) modal.classList.add("open");
 }
 
-function closeModal(modal) {
-	if (modal) modal.classList.remove("open");
-}
-
 cards.forEach((card) => {
 	card.addEventListener("click", () => {
 		const modalId = card.dataset.modal;
@@ -18,9 +14,22 @@ cards.forEach((card) => {
 	});
 });
 
+function closeModal(modal) {
+	if (!modal || !modal.classList) return;
+	modal.classList.remove("open");
+}
+
+document.querySelectorAll(".modal-close").forEach((btn) => {
+	btn.addEventListener("click", (e) => {
+		const modal = e.target.closest(".modal");
+		closeModal(modal);
+	});
+});
+
 document.querySelectorAll(".modal-links button").forEach((btn) => {
 	btn.addEventListener("click", (e) => {
-		closeModal(e.target.closest(".modal"));
+		const modal = e.target.closest(".modal");
+		closeModal(modal);
 	});
 });
 
