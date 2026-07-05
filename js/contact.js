@@ -10,6 +10,12 @@ const emailError = document.getElementById("email-error");
 const subjectError = document.getElementById("subject-error");
 const messageError = document.getElementById("message-error");
 
+const submitButton = form.querySelector('button[type="submit"]');
+const defaultButtonText = submitButton.textContent;
+
+const GAS_URL =
+	"https://script.google.com/macros/s/AKfycbzzrsFMwJxpGv9iT2pZ2Y6cgc2OuE1aqmWGgL6bLi0O1nGFGkAMGTNMsrCj1NnwWh3F/exec";
+
 function clearErrors() {
 	nameError.textContent = "";
 	emailError.textContent = "";
@@ -34,7 +40,7 @@ function isValidEmail(email) {
 	return regex.test(email);
 }
 
-form.addEventListener("submit", (event) => {
+form.addEventListener("submit", async (event) => {
 	event.preventDefault();
 
 	clearErrors();
@@ -95,5 +101,40 @@ form.addEventListener("submit", (event) => {
 		return;
 	}
 
-	console.log("Validation OK");
+	submitButton.disabled = true;
+	submitButton.textContent = "SENDING...";
+
+	try {
+		await sendContact();
+
+		form.reset();
+
+		openModal("contact-success");
+	} catch (error) {
+		console.error(error);
+		alert("Failed to send message.");
+	} finally {
+		submitButton.disabled = false;
+		submitButton.textContent = defaultButtonText;
+	}
 });
+
+async function sendContact() {
+	const formData = new FormData();
+
+	formData.append("name", nameInput.value.trim());
+	formData.append("email", emailInput.value.trim());
+	formData.append("subject", subjectInput.value.trim());
+	formData.append("message", messageInput.value.trim());
+
+	const response = await fetch(GAS_URL, {
+		method: "POST",
+		body: formData,
+	});
+
+	if (!response.ok) {
+		throw new Error("Failed to send contact form.");
+	}
+
+	return await response.text();
+}

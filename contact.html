@@ -6,6 +6,7 @@
 		<title>Contact</title>
 
 		<link rel="stylesheet" href="./css/style.css" />
+		<link rel="stylesheet" href="./css/modal.css" />
 		<link rel="stylesheet" href="./css/contact.css" />
 		<link rel="stylesheet" href="./css/game-ui.css" />
 	</head>
@@ -50,8 +51,25 @@
 			</div>
 		</main>
 
+		<div class="modal" id="contact-success">
+			<div class="modal-content">
+				<h2>MESSAGE SENT</h2>
+
+				<p>
+					Thank you for your message.
+					<br />
+					I'll get back to you as soon as possible.
+				</p>
+
+				<div class="modal-links">
+					<button type="button">CLOSE</button>
+				</div>
+			</div>
+		</div>
+
 		<div id="footer"></div>
 		<script src="./js/layout.js"></script>
+		<script src="./js/modal.js"></script>
 		<script src="./js/contact.js"></script>
 	</body>
 </html>
