@@ -21,7 +21,11 @@
 .modal-content {
 	position: relative;
 
-	width: min(88%, 800px);
+	width: 800px;
+	max-width: none;
+	/* width: 100%; */
+	/* max-width: 800px; */
+	/* margin: 0 16px; */
 	max-height: 85vh;
 	overflow-y: auto;
 
@@ -34,7 +38,7 @@
 }
 
 .modal-content::-webkit-scrollbar {
-	width: 10px;
+	width: 5px;
 }
 
 .modal-content::-webkit-scrollbar-track {
@@ -101,7 +105,13 @@
 	margin-bottom: 30px;
 }
 
-#contact-success .modal-content {
+#contact-success .modal-content,
+#contact-error .modal-content {
+	width: 100%;
+	max-width: 700px;
+
+	text-align: center;
+
 	font-family: "PixelMplus12", monospace;
 	letter-spacing: 1px;
 }

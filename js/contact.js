@@ -23,6 +23,15 @@ document.getElementById("success-close")?.addEventListener("click", () => {
 	});
 });
 
+document.getElementById("retry-send")?.addEventListener("click", () => {
+	closeModal(document.getElementById("contact-error"));
+
+	document.getElementById("contact-form")?.scrollIntoView({
+		behavior: "smooth",
+		block: "start",
+	});
+});
+
 const GAS_URL =
 	"https://script.google.com/macros/s/AKfycbzzrsFMwJxpGv9iT2pZ2Y6cgc2OuE1aqmWGgL6bLi0O1nGFGkAMGTNMsrCj1NnwWh3F/exec";
 
