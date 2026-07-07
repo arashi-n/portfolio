@@ -11,6 +11,10 @@ body {
 	padding: 0px 20px;
 }
 
+.skills h2 {
+	font-family: "PixelMplus12", monospace;
+}
+
 .skills-section {
 	margin-bottom: 60px;
 }
