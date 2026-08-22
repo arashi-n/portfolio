@@ -150,6 +150,13 @@
 	color: #000;
 }
 
+.modal-video {
+	width: 100%;
+	max-height: 70vh;
+	display: block;
+	margin-bottom: 24px;
+}
+
 .modal-close {
 	position: absolute;
 	top: 20px;
