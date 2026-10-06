@@ -1,47 +1,326 @@
 body {
 	overflow: auto;
-	background-repeat: repeat;
 	background: transparent;
 }
 
-.coming-soon {
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	font-size: 5rem;
-	color: #3d3d3d;
-	z-index: 100;
-	user-select: none;
-}
-
-.coming-soon span {
-	display: inline-block;
-	animation: jump 3s infinite;
+.about-page {
+	position: relative;
 	z-index: 1;
+	width: 100%;
+	max-width: 1200px;
+	min-height: 100vh;
+	margin: 0 auto;
+	padding: 120px 40px 110px;
+	color: #fff;
+	font-family: "PixelMplus12", monospace;
 }
 
-.coming-soon span:nth-child(1) {
-	animation-delay: 0s;
+/* ページ全体の見出し */
+.about-page__title {
+	margin-bottom: 24px;
+	color: #000;
+	text-align: center;
+	font-size: 32px;
+	letter-spacing: 0.08em;
+	text-shadow: none;
 }
 
-.coming-soon span:nth-child(2) {
-	animation-delay: 0.5s;
+.about-page__title span {
+	display: block;
+	margin-top: 8px;
+	font-size: 14px;
+	letter-spacing: 0.12em;
 }
 
-.coming-soon span:nth-child(3) {
-	animation-delay: 1s;
+/* 左メニューと右の内容枠 */
+.status-screen {
+	display: grid;
+	grid-template-columns: 210px minmax(0, 1fr);
+	gap: 24px;
+	align-items: stretch;
 }
 
-@keyframes jump {
-	0%,
-	49%,
-	100% {
-		transform: translateY(0);
+/* 左側の選択メニュー */
+.status-menu {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	align-self: start;
+	padding: 12px;
+	background: rgba(0, 0, 0, 0.8);
+	border: 4px solid #fff;
+	border-radius: 12px;
+}
+
+.status-menu__item {
+	display: grid;
+	grid-template-columns: 20px minmax(0, 1fr);
+	align-items: center;
+	gap: 8px;
+	width: 100%;
+	padding: 12px 8px;
+	color: #fff;
+	background: transparent;
+	border: 2px solid transparent;
+	border-radius: 6px;
+	font: inherit;
+	font-size: 16px;
+	text-align: left;
+	cursor: pointer;
+}
+
+.status-menu__cursor {
+	visibility: hidden;
+}
+
+.status-menu__item:hover,
+.status-menu__item:focus-visible {
+	background: rgba(255, 255, 255, 0.1);
+	outline: none;
+}
+
+.status-menu__item.is-active {
+	background: rgba(255, 255, 255, 0.12);
+	border-color: #fff;
+}
+
+.status-menu__item.is-active .status-menu__cursor {
+	visibility: visible;
+}
+
+.status-menu__item:focus-visible {
+	outline: 2px dashed #fff;
+	outline-offset: 3px;
+}
+
+/* 右側の大きな表示枠 */
+.status-panel {
+	min-width: 0;
+	min-height: 430px;
+	padding: 24px;
+	background: rgba(0, 0, 0, 0.8);
+	border: 4px solid #fff;
+	border-radius: 12px;
+}
+
+.status-panel__title {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: 12px;
+	margin-bottom: 12px;
+	padding-bottom: 14px;
+	border-bottom: 2px solid rgba(255, 255, 255, 0.65);
+	font-size: 24px;
+	letter-spacing: 0.04em;
+}
+
+.status-panel__title span {
+	font-size: 14px;
+	opacity: 0.8;
+}
+
+.status-panel__intro {
+	margin-bottom: 22px;
+	font-size: 16px;
+	line-height: 1.8;
+}
+
+/* PROFILE：一枚の枠内に見出しと文章を縦に並べる */
+.profile-content {
+	display: flex;
+	flex-direction: column;
+	gap: 28px;
+	min-width: 0;
+}
+
+.profile-section {
+	min-width: 0;
+}
+
+.profile-section + .profile-section {
+	padding-top: 28px;
+	border-top: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.profile-section__title {
+	margin-bottom: 8px;
+	font-size: 18px;
+	line-height: 1.6;
+	letter-spacing: 0.04em;
+}
+
+.profile-section__subtitle {
+	margin-bottom: 16px;
+	font-size: 14px;
+	line-height: 1.7;
+	opacity: 0.8;
+}
+
+.profile-section > p {
+	font-size: 16px;
+	line-height: 1.9;
+}
+
+.profile-section > p + p {
+	margin-top: 14px;
+}
+
+/* PLAYER PROFILEの基本情報 */
+.player-profile-data {
+	display: grid;
+	grid-template-columns: 1fr;
+	margin-bottom: 20px;
+}
+
+.player-profile-data > div {
+	display: grid;
+	grid-template-columns: 105px minmax(0, 1fr);
+	gap: 10px;
+	padding: 9px 0;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.player-profile-data dt {
+	font-size: 14px;
+	line-height: 1.7;
+	opacity: 0.8;
+}
+
+.player-profile-data dd {
+	min-width: 0;
+	font-size: 16px;
+	line-height: 1.7;
+	overflow-wrap: anywhere;
+}
+
+/* MY STYLE */
+.style-list {
+	display: grid;
+	gap: 20px;
+}
+
+.style-item {
+	padding: 20px;
+	background: rgba(255, 255, 255, 0.07);
+	border: 2px solid rgba(255, 255, 255, 0.75);
+	border-radius: 8px;
+}
+
+.style-item__label {
+	display: inline-block;
+	margin-bottom: 10px;
+	padding: 5px 9px;
+	border: 1px solid #fff;
+	border-radius: 4px;
+	font-size: 14px;
+	letter-spacing: 0.08em;
+}
+
+.style-item h3,
+.quest-list h3 {
+	margin-bottom: 8px;
+	font-size: 18px;
+	line-height: 1.6;
+}
+
+.style-item p,
+.quest-list p {
+	font-size: 16px;
+	line-height: 1.8;
+}
+
+/* CURRENT QUEST */
+.quest-list {
+	display: grid;
+	gap: 20px;
+	list-style: none;
+}
+
+.quest-list li {
+	display: grid;
+	grid-template-columns: 22px minmax(0, 1fr);
+	gap: 10px;
+	padding: 20px;
+	background: rgba(255, 255, 255, 0.07);
+	border: 2px solid rgba(255, 255, 255, 0.75);
+	border-radius: 8px;
+}
+
+.quest-list li > span {
+	padding-top: 2px;
+	font-size: 14px;
+}
+
+/* スマートフォン */
+@media (max-width: 700px) {
+	.about-page {
+		padding: 110px 16px 100px;
 	}
 
-	50%,
-	99% {
-		transform: translateY(-6px);
+	.about-page__title {
+		font-size: 26px;
+	}
+
+	.status-screen {
+		grid-template-columns: 1fr;
+		gap: 16px;
+	}
+
+	.status-menu {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 6px;
+		padding: 8px;
+	}
+
+	.status-menu__item {
+		grid-template-columns: 1fr;
+		justify-items: center;
+		gap: 4px;
+		padding: 9px 4px;
+		font-size: 14px;
+		text-align: center;
+	}
+
+	.status-menu__cursor {
+		height: 14px;
+	}
+
+	.status-panel {
+		min-height: 0;
+		padding: 16px;
+	}
+
+	.status-panel__title {
+		font-size: 20px;
+	}
+
+	.profile-section__title,
+	.style-item h3,
+	.quest-list h3 {
+		font-size: 16px;
+	}
+
+	.profile-section > p,
+	.style-item p,
+	.quest-list p {
+		font-size: 15px;
+	}
+
+	.player-profile-data {
+		grid-template-columns: 1fr;
+	}
+
+	.player-profile-data > div {
+		grid-template-columns: 100px minmax(0, 1fr);
+	}
+
+	.player-profile-data dd {
+		font-size: 15px;
+	}
+
+	.profile-section + .profile-section {
+		padding-top: 22px;
 	}
 }

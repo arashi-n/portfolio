@@ -15,13 +15,270 @@
 
 		<img src="./assets/background.png" alt="" class="background" />
 
-		<p class="coming-soon">
-			<span>準</span>
-			<span>備</span>
-			<span>中</span>
-		</p>
+		<main class="about-page">
+			<h1 class="about-page__title">ABOUT <span>PLAYER STATUS</span></h1>
+
+			<div class="status-screen">
+				<nav class="status-menu" aria-label="Aboutの項目">
+					<button
+						class="status-menu__item is-active"
+						id="tab-profile"
+						type="button"
+						role="tab"
+						aria-selected="true"
+						aria-controls="panel-profile"
+						data-panel="profile"
+					>
+						<span class="status-menu__cursor" aria-hidden="true">▶</span>
+						PROFILE
+					</button>
+
+					<button
+						class="status-menu__item"
+						id="tab-style"
+						type="button"
+						role="tab"
+						aria-selected="false"
+						aria-controls="panel-style"
+						data-panel="style"
+						tabindex="-1"
+					>
+						<span class="status-menu__cursor" aria-hidden="true">▶</span>
+						MY STYLE
+					</button>
+
+					<button
+						class="status-menu__item"
+						id="tab-quest"
+						type="button"
+						role="tab"
+						aria-selected="false"
+						aria-controls="panel-quest"
+						data-panel="quest"
+						tabindex="-1"
+					>
+						<span class="status-menu__cursor" aria-hidden="true">▶</span>
+						CURRENT QUEST
+					</button>
+				</nav>
+
+				<section
+					class="status-panel"
+					id="panel-profile"
+					role="tabpanel"
+					aria-labelledby="tab-profile"
+					tabindex="0"
+				>
+					<h2 class="status-panel__title">PROFILE <span>PLAYER DATA</span></h2>
+
+					<div class="profile-content">
+						<section class="profile-section">
+							<h3 class="profile-section__title">
+								INTRODUCTION｜PLAYER PROFILE
+							</h3>
+
+							<dl class="player-profile-data">
+								<div>
+									<dt>NAME</dt>
+									<dd>Arashi</dd>
+								</div>
+								<div>
+									<dt>ROLE</dt>
+									<dd>Web / IT Creator</dd>
+								</div>
+								<div>
+									<dt>PARTY</dt>
+									<dd>Mother of Two ｜ Family of 3</dd>
+								</div>
+								<div>
+									<dt>BASE</dt>
+									<dd>Eastern Hokkaido, Japan</dd>
+								</div>
+								<div>
+									<dt>INTEREST</dt>
+									<dd>DIY ｜ Car Camping ｜ App Development</dd>
+								</div>
+							</dl>
+
+							<p>
+								北海道オホーツク地方出身。<br />進学を機に札幌へ移り、その後福井県で数年間暮らした後、オホーツクへUターンしました。二児の母です。
+							</p>
+							<p>
+								短期大学の幼児教育保育学科を卒業後、接客・販売・営業職を経験。
+							</p>
+						</section>
+
+						<section class="profile-section">
+							<h3 class="profile-section__title">QUEST 01｜CAREER</h3>
+							<p class="profile-section__subtitle">これまでのキャリア</p>
+
+							<p>
+								前職の通信業界では、顧客対応から申込手続き、事務処理、RPAを使った業務まで幅広く経験しました。
+							</p>
+							<p>
+								お客様への案内から申込手続きまでを一貫して担当。相手に合わせた対応と継続的なフォローを行い、対応獲得率40〜50％、チーム内TOP3を維持し、部署内1位も経験しました。
+							</p>
+						</section>
+
+						<section class="profile-section">
+							<h3 class="profile-section__title">QUEST 02｜WEB &amp; IT</h3>
+							<p class="profile-section__subtitle">
+								Web・ITに興味を持ったきっかけ
+							</p>
+
+							<p>
+								通信業界で働く中で、Webサイトの小さなデザイン変更や流入分析によって申込数が変化することを知り、Webの改善が人の行動や結果につながることに面白さを感じました。
+							</p>
+							<p>
+								これをきっかけに、WebやITの仕組みを学びたいと思うようになりました。
+							</p>
+						</section>
+
+						<section class="profile-section">
+							<h3 class="profile-section__title">QUEST 03｜SKILL UP</h3>
+							<p class="profile-section__subtitle">職業訓練・学習</p>
+
+							<p>
+								前職退職後、職業訓練でWebデザインやWebマーケティングを学び、デザインツールやHTML/CSS、広告運用、分析など幅広い分野に触れました。
+							</p>
+							<p>
+								その中でも、コードを書いて実際に動くものをつくることに特に面白さを感じ、開発への関心が深まりました。
+							</p>
+							<p>
+								訓練修了後も独学や講座受講などでWeb・ITの学習を続けています。
+							</p>
+						</section>
+
+						<section class="profile-section">
+							<h3 class="profile-section__title">QUEST 04｜BUILD</h3>
+							<p class="profile-section__subtitle">制作・改善</p>
+
+							<p>
+								Salesforceの資格取得を目指し、GASを使ったSalesforce過去問アプリを制作しました。アプリを使って学習を継続し、資格を取得しました。
+							</p>
+							<p>
+								業務上の課題から制作した「Talk
+								Navi」に関しては、課題を見つけ、考え、形にし、フィードバックをもとに改善する経験を重ねています。
+							</p>
+							<p>
+								現在は学習仲間とのチーム制作にも取り組み始め、ディレクター兼コーダーとして制作に関わっています。個人制作とは違うチーム制作の難しさを感じながら、日々経験を積んでいます。
+							</p>
+						</section>
+
+						<section class="profile-section">
+							<h3 class="profile-section__title">
+								NEXT QUEST｜WEB / APP DEVELOPMENT
+							</h3>
+							<p class="profile-section__subtitle">現在の方向性</p>
+
+							<p>
+								こうした経験を通して、「課題やもっとこうしたいに気づき、解決方法を考え、実際に形にすること」に面白さを感じるようになりました。
+							</p>
+							<p>
+								これまでの顧客対応の経験と、Web・IT分野の学習や制作で培ってきた経験を活かし、使う人の課題を見つけ、考え、より良いカタチにしていけるWeb・アプリ開発の仕事を目指しています。
+							</p>
+						</section>
+					</div>
+				</section>
+
+				<section
+					class="status-panel"
+					id="panel-style"
+					role="tabpanel"
+					aria-labelledby="tab-style"
+					tabindex="0"
+					hidden
+				>
+					<h2 class="status-panel__title">
+						MY STYLE <span>PLAYER ABILITIES</span>
+					</h2>
+					<p class="status-panel__intro">
+						仕事や制作で大切にしている行動です。
+					</p>
+
+					<div class="style-list">
+						<article class="style-item">
+							<span class="style-item__label">SOLVE</span>
+							<h3>課題を見つけて、形にする</h3>
+							<p>
+								「もっとこうできないか」を起点に、課題や必要なことを整理し、どうすれば実現できるかを考えます。
+							</p>
+						</article>
+
+						<article class="style-item">
+							<span class="style-item__label">ACTION</span>
+							<h3>まず動いて、必要なことを学ぶ</h3>
+							<p>
+								必要なことを自分で調べ、学びながらまず手を動かし、理解を深めます。
+							</p>
+						</article>
+
+						<article class="style-item">
+							<span class="style-item__label">INITIATIVE</span>
+							<h3>自ら働きかけ、機会をつくる</h3>
+							<p>
+								必要なことや実現したいことがあれば、積極的に人に声をかけたり相談したりしながら、機会や環境をつくります。
+							</p>
+						</article>
+
+						<article class="style-item">
+							<span class="style-item__label">IMPROVE</span>
+							<h3>結果や意見から、より良くする</h3>
+							<p>
+								実際の結果や周囲からのフィードバックを取り入れて改善します。
+							</p>
+						</article>
+					</div>
+				</section>
+
+				<section
+					class="status-panel"
+					id="panel-quest"
+					role="tabpanel"
+					aria-labelledby="tab-quest"
+					tabindex="0"
+					hidden
+				>
+					<h2 class="status-panel__title">
+						CURRENT QUEST <span>QUEST LOG</span>
+					</h2>
+					<p class="status-panel__intro">現在取り組んでいること。</p>
+
+					<ul class="quest-list">
+						<li>
+							<span aria-hidden="true">▶</span>
+							<div>
+								<h3>業務支援ツールの制作・改善</h3>
+								<p>
+									実務で感じた課題をもとに制作し、利用者のフィードバックを受けて改善。
+								</p>
+							</div>
+						</li>
+
+						<li>
+							<span aria-hidden="true">▶</span>
+							<div>
+								<h3>Web制作チームでのサイト制作</h3>
+								<p>
+									自ら企画して仲間に声をかけ、チームでの制作に取り組んでいます。
+								</p>
+							</div>
+						</li>
+
+						<li>
+							<span aria-hidden="true">▶</span>
+							<div>
+								<h3>Web・ITの継続学習</h3>
+								<p>制作や業務に必要な知識・技術を学び続けています。</p>
+							</div>
+						</li>
+					</ul>
+				</section>
+			</div>
+		</main>
 
 		<div id="footer"></div>
 		<script src="./js/layout.js"></script>
+		<script src="./js/about.js"></script>
 	</body>
 </html>
