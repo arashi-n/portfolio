@@ -85,6 +85,18 @@ body {
 	animation-delay: 0.35s;
 }
 
+.work-card:nth-child(5) {
+	animation-delay: 0.45s;
+}
+
+.work-card:nth-child(6) {
+	animation-delay: 0.55s;
+}
+
+.work-card:nth-child(7) {
+	animation-delay: 0.65s;
+}
+
 .work-card:hover {
 	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
