@@ -63,3 +63,26 @@ main {
 	padding-top: 120px;
 	padding-bottom: 100px;
 }
+
+.page-heading {
+	margin: 0 0 24px;
+	color: #000;
+	font-family: "PixelMplus12", monospace;
+	font-size: 32px;
+	letter-spacing: 0.08em;
+	text-align: center;
+	text-shadow: none;
+}
+
+.page-heading span {
+	display: block;
+	margin-top: 8px;
+	font-size: 14px;
+	letter-spacing: 0.12em;
+}
+
+@media (max-width: 700px) {
+	.page-heading {
+		font-size: 26px;
+	}
+}

@@ -47,7 +47,7 @@ body {
 
 .work-card:hover {
 	transform: translateY(-12px) scale(1.03);
-	box-shadow: 0 20px 36px rgba(0, 0, 0, 0.25);
+	box-shadow: 4px 4px 0 #111;
 }
 
 .card-open {
@@ -98,7 +98,7 @@ body {
 }
 
 .work-card:hover {
-	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+	box-shadow: 4px 4px 0 #111;
 }
 
 .work-image {
@@ -170,8 +170,6 @@ body {
 	padding: 30px;
 
 	border: 2px solid #111;
-	outline: 2px solid #111;
-	outline-offset: 3px;
 	background: #f9f9f9;
 	cursor: pointer;
 	transition:
@@ -181,7 +179,7 @@ body {
 
 .works-container .creative-entry-card:hover {
 	transform: translateY(-5px);
-	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+	box-shadow: 4px 4px 0 #111;
 }
 
 .works-container .creative-entry-icon {
@@ -250,4 +248,44 @@ body {
 	.enter-label {
 		margin-top: 10px;
 	}
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+.works-jump-menu {
+	max-width: 1100px;
+	margin: 0 auto 24px;
+	padding: 0 40px;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(320px, 320px));
+	gap: 24px;
+	justify-content: center;
+}
+
+.works-jump-menu a {
+	padding: 8px 12px;
+	border: 2px solid #111;
+	border-radius: 6px;
+	background: #fff;
+	color: #111;
+	font-family: "PixelMplus12", monospace;
+	font-size: 13px;
+	text-decoration: none;
+	box-shadow: 4px 4px 0 #111;
+	transition:
+		transform 0.2s ease,
+		box-shadow 0.2s ease;
+	grid-column: 1 / -1;
+	justify-self: end;
+}
+
+.works-jump-menu a:hover {
+	transform: translate(2px, 2px);
+	box-shadow: 2px 2px 0 #111;
+}
+
+#creative-works {
+	scroll-margin-top: 100px;
 }

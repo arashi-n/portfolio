@@ -43,6 +43,13 @@ body {
 	text-align: center;
 }
 
+.contact-panel h1 span {
+	display: block;
+	margin-top: 8px;
+	font-size: 14px;
+	letter-spacing: 0.12em;
+}
+
 .contact-panel label {
 	font-family: "PixelMplus12", monospace;
 	font-size: 1.3rem;
