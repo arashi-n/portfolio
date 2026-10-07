@@ -41,7 +41,6 @@ let currentBuilding = 0;
 const isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0;
 
 if (speech && isTouchDevice) {
-	speech.innerHTML = "Drag to move<br>Tap a building";
 	speech.classList.add("mobile");
 }
 
@@ -126,9 +125,12 @@ if (isTouchDevice && wrapper) {
 // ====================
 function resizeGame() {
 	const game = document.querySelector(".game-world");
+	const wrapper = document.querySelector(".game-wrapper");
 
-	const vw = window.innerWidth;
-	const vh = window.innerHeight;
+	if (!game || !wrapper) return;
+
+	const vw = wrapper.clientWidth;
+	const vh = wrapper.clientHeight;
 
 	const scale = Math.min(vw / 1920, vh / 1080);
 
@@ -213,7 +215,7 @@ function update(timestamp) {
 
 	// 吹き出し更新
 	if (speech && !speechHidden) {
-		const speechOffset = isTouchDevice ? 200 : 70;
+		const speechOffset = isTouchDevice ? 200 : 120;
 
 		speech.style.left = x + "px";
 		speech.style.top = y - speechOffset + "px";
