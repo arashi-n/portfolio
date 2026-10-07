@@ -2,41 +2,48 @@ function createLayout() {
 	const page = document.body.dataset.page;
 
 	const menus = {
+		home: [
+			{ name: "WORKS", link: "works.html" },
+			{ name: "SKILLS", link: "skills.html" },
+			{ name: "ABOUT", link: "about.html" },
+			{ name: "CONTACT", link: "contact.html" },
+		],
+
 		works: [
-			{ name: "Home", link: "index.html" },
-			{ name: "Skills", link: "skills.html" },
-			{ name: "About", link: "about.html" },
-			{ name: "Contact", link: "contact.html" },
+			{ name: "HOME", link: "index.html" },
+			{ name: "SKILLS", link: "skills.html" },
+			{ name: "ABOUT", link: "about.html" },
+			{ name: "CONTACT", link: "contact.html" },
 		],
 
 		skills: [
-			{ name: "Home", link: "index.html" },
-			{ name: "Works", link: "works.html" },
-			{ name: "About", link: "about.html" },
+			{ name: "HOME", link: "index.html" },
+			{ name: "WORKS", link: "works.html" },
+			{ name: "ABOUT", link: "about.html" },
 
-			{ name: "Contact", link: "contact.html" },
+			{ name: "CONTACT", link: "contact.html" },
 		],
 
 		about: [
-			{ name: "Home", link: "index.html" },
-			{ name: "Works", link: "works.html" },
-			{ name: "Skills", link: "skills.html" },
-			{ name: "Contact", link: "contact.html" },
+			{ name: "HOME", link: "index.html" },
+			{ name: "WORKS", link: "works.html" },
+			{ name: "SKILLS", link: "skills.html" },
+			{ name: "CONTACT", link: "contact.html" },
 		],
 
 		contact: [
-			{ name: "Home", link: "index.html" },
-			{ name: "Works", link: "works.html" },
-			{ name: "Skills", link: "skills.html" },
-			{ name: "About", link: "about.html" },
+			{ name: "HOME", link: "index.html" },
+			{ name: "WORKS", link: "works.html" },
+			{ name: "SKILLS", link: "skills.html" },
+			{ name: "ABOUT", link: "about.html" },
 		],
 
 		creative: [
-			{ name: "Home", link: "index.html" },
-			{ name: "Works", link: "works.html" },
-			{ name: "Skills", link: "skills.html" },
-			{ name: "About", link: "about.html" },
-			{ name: "Contact", link: "contact.html" },
+			{ name: "HOME", link: "index.html" },
+			{ name: "WORKS", link: "works.html" },
+			{ name: "SKILLS", link: "skills.html" },
+			{ name: "ABOUT", link: "about.html" },
+			{ name: "CONTACT", link: "contact.html" },
 		],
 	};
 
@@ -49,6 +56,11 @@ function createLayout() {
 
 	header.innerHTML = `
 	<header class="game-header">
+	<a class="site-brand" href="index.html">
+			<span class="site-brand__name">Arashi's PORTFOLIO</span>
+			<span class="site-brand__role">WEB / IT CREATOR</span>
+		</a>
+
 		<button class="menu-btn">MENU</button>
 
 		<nav class="game-nav">
@@ -57,11 +69,18 @@ function createLayout() {
 	</header>
 `;
 
-	footer.innerHTML = `
+	if (footer && page !== "home") {
+		footer.innerHTML = `
 		<footer class="game-footer">
-			<a href="index.html">A：Home</a>
+			<a class="game-footer__thanks" href="index.html">
+				THANKS FOR PLAYING!
+			</a>
+			<small class="game-footer__copyright">
+				© 2026 Arashi
+			</small>
 		</footer>
 	`;
+	}
 }
 
 createLayout();

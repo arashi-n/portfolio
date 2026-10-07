@@ -1,3 +1,39 @@
+.site-brand {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 4px;
+	flex: 0 0 auto;
+	margin-right: 24px;
+	color: #fff;
+	font-family: "PixelMplus12", monospace;
+	text-decoration: none;
+	white-space: nowrap;
+}
+
+.site-brand__name {
+	font-size: 22px;
+	line-height: 1.2;
+	letter-spacing: 0.04em;
+}
+
+.site-brand__role {
+	font-size: 12px;
+	line-height: 1.2;
+	letter-spacing: 0.08em;
+	opacity: 0.85;
+}
+
+@media (max-width: 768px) {
+	.site-brand__name {
+		font-size: 16px;
+	}
+
+	.site-brand__role {
+		font-size: 10px;
+	}
+}
+
 .game-header,
 .game-footer {
 	background: rgba(0, 0, 0, 0.8);
@@ -33,7 +69,8 @@
 	align-items: center;
 	gap: 40px;
 	padding-right: 20px;
-	width: 100%;
+	flex: 1;
+	width: auto;
 }
 
 .game-nav a::before {
@@ -51,10 +88,9 @@
 
 .game-footer {
 	position: fixed;
-	left: 0px;
-	right: 0px;
-	bottom: 0px;
-
+	left: 0;
+	right: 0;
+	bottom: 0;
 	height: 70px;
 
 	display: flex;
@@ -67,6 +103,19 @@
 	color: white;
 
 	z-index: 1000;
+}
+
+.game-footer__thanks {
+	color: inherit;
+	font-size: 20px;
+	text-decoration: none;
+}
+
+.game-footer__copyright {
+	position: absolute;
+	right: 12px;
+	bottom: 8px;
+	font-size: 12px;
 }
 
 .menu-btn {

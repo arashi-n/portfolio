@@ -294,3 +294,52 @@ setInterval(animateBuildings, 1500);
 // 初期化
 // ====================
 requestAnimationFrame(update);
+
+const homeTitle = document.querySelector(".home-bottom-panel__title");
+
+if (homeTitle) {
+	const englishText = "MAKE IT HAPPEN.";
+	const japaneseText = "考えるだけで終わらせない。";
+	const prefersReducedMotion = window.matchMedia(
+		"(prefers-reduced-motion: reduce)",
+	).matches;
+
+	if (!prefersReducedMotion) {
+		function showEnglishText() {
+			homeTitle.classList.remove("is-changing", "is-japanese");
+
+			const letters = [...englishText].map((character, index) => {
+				const letter = document.createElement("span");
+				letter.className = "home-bottom-panel__letter";
+				letter.style.setProperty("--letter-index", index);
+				letter.textContent = character === " " ? "\u00a0" : character;
+				return letter;
+			});
+
+			homeTitle.replaceChildren(...letters);
+
+			window.setTimeout(() => {
+				homeTitle.classList.add("is-changing");
+
+				window.setTimeout(() => {
+					homeTitle.textContent = japaneseText;
+					homeTitle.classList.remove("is-changing");
+					homeTitle.classList.add("is-japanese");
+
+					window.setTimeout(() => {
+						homeTitle.classList.add("is-changing");
+
+						window.setTimeout(() => {
+							homeTitle.replaceChildren();
+							homeTitle.classList.remove("is-changing", "is-japanese");
+
+							window.setTimeout(showEnglishText, 350);
+						}, 250);
+					}, 1800);
+				}, 250);
+			}, 3200);
+		}
+
+		showEnglishText();
+	}
+}

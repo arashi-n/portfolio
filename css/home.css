@@ -291,3 +291,249 @@ a:hover {
 		transform: translateY(2px);
 	}
 }
+
+/* =====================
+   Home 操作説明
+===================== */
+.home-help-panel {
+	position: fixed;
+	left: 12px;
+	bottom: 134px;
+	z-index: 1000;
+
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+
+	width: 230px;
+	box-sizing: border-box;
+	padding: 12px 14px;
+
+	color: white;
+	font-family: "PixelMplus12", sans-serif;
+	background: rgba(0, 0, 0, 0.85);
+	border: 2px solid white;
+	border-radius: 10px;
+}
+
+.home-help-panel h2 {
+	position: relative;
+	margin: 0 0 4px;
+	font-size: 16px;
+	text-align: center;
+}
+
+.home-help-panel h2::after {
+	content: "";
+	position: absolute;
+	left: -14px;
+	right: -14px;
+	bottom: -14px;
+	height: 1px;
+	background: rgba(255, 255, 255, 0.3);
+}
+
+/* WASD・矢印キー・マウス操作の共通配置 */
+.home-help-panel__move-row,
+.home-help-panel__click {
+	position: relative;
+	display: grid;
+	grid-template-columns: 82px minmax(0, 1fr);
+	align-items: center;
+	column-gap: 4px;
+}
+
+.home-help-panel__move-row + .home-help-panel__move-row::before,
+.home-help-panel__move-row + .home-help-panel__click::before {
+	content: "";
+	position: absolute;
+	top: -12px;
+	left: 14px;
+	right: 14px;
+	height: 1px;
+	background: rgba(255, 255, 255, 0.3);
+}
+
+/* キー配置 */
+.home-control__keys {
+	display: grid;
+	grid-template-columns: repeat(3, 24px);
+	grid-template-rows: repeat(2, 24px);
+	gap: 3px;
+	justify-self: center;
+}
+
+.home-control__key {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-sizing: border-box;
+
+	color: white;
+	font-family: inherit;
+	font-size: 13px;
+	line-height: 1;
+
+	background: rgba(255, 255, 255, 0.08);
+	border: 1px solid white;
+	border-radius: 5px;
+}
+
+.home-control__key--w,
+.home-control__key--up {
+	grid-column: 2;
+	grid-row: 1;
+}
+
+.home-control__key--a,
+.home-control__key--left {
+	grid-column: 1;
+	grid-row: 2;
+}
+
+.home-control__key--s,
+.home-control__key--down {
+	grid-column: 2;
+	grid-row: 2;
+}
+
+.home-control__key--d,
+.home-control__key--right {
+	grid-column: 3;
+	grid-row: 2;
+}
+
+/* MOVE・CLICK TO SELECTの位置と文字 */
+.home-control__label {
+	justify-self: center;
+	color: white;
+	font-family: inherit;
+	font-size: 14px;
+	text-align: center;
+}
+
+.home-help-panel__click .home-control__label {
+	white-space: normal;
+	line-height: 1.2;
+}
+
+/* マウスアイコン */
+.home-control__mouse {
+	width: 26px;
+	height: 32px;
+	justify-self: center;
+
+	fill: none;
+	stroke: white;
+	stroke-width: 2;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}
+
+/* =====================
+   Home メッセージ枠
+===================== */
+.home-bottom-panel {
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 1000;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	height: 118px;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 6px 12px;
+
+	color: white;
+	font-family: "PixelMplus12", sans-serif;
+	text-align: center;
+
+	background: rgba(0, 0, 0, 0.85);
+	border: 3px solid white;
+	border-radius: 12px;
+}
+
+.home-bottom-panel__title {
+	margin: 0;
+	font-family: inherit;
+	font-size: clamp(28px, 4.5vw, 50px);
+	font-weight: bold;
+	letter-spacing: 0.04em;
+	text-align: center;
+	text-shadow: 0 0 8px rgba(255, 255, 255, 0.35);
+	transition: opacity 0.25s ease;
+}
+
+.home-bottom-panel__title.is-changing {
+	opacity: 0;
+}
+
+.home-bottom-panel__title.is-japanese {
+	font-size: clamp(20px, 2.5vw, 30px);
+}
+
+.home-bottom-panel__letter {
+	display: inline-block;
+	opacity: 0;
+	transform: translateY(0.3em) scale(0.85);
+	animation: home-letter-appear 0.22s steps(3, end) forwards;
+	animation-delay: calc(var(--letter-index) * 0.11s);
+}
+
+@keyframes home-letter-appear {
+	to {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
+}
+
+/* =====================
+   スマートフォン表示
+===================== */
+@media (max-width: 700px) {
+	.home-help-panel {
+		left: 8px;
+		bottom: 96px;
+		width: min(230px, calc(100vw - 16px));
+		padding: 8px 10px;
+	}
+
+	.home-help-panel h2 {
+		font-size: 13px;
+	}
+
+	.home-help-panel h2::after {
+		left: -10px;
+		right: -10px;
+	}
+
+	.home-control__label {
+		font-size: 12px;
+	}
+
+	.home-bottom-panel {
+		height: 84px;
+	}
+
+	.home-bottom-panel__title {
+		font-size: clamp(22px, 6vw, 34px);
+	}
+
+	.home-bottom-panel__title.is-japanese {
+		font-size: clamp(18px, 5vw, 26px);
+	}
+}
+
+/* 動きを抑える設定が有効な端末では、文字を静止表示 */
+@media (prefers-reduced-motion: reduce) {
+	.home-bottom-panel__letter {
+		animation: none;
+		opacity: 1;
+		transform: none;
+	}
+}

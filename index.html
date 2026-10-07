@@ -6,32 +6,35 @@
 		<title>Portfolio Home</title>
 
 		<link rel="stylesheet" href="./css/style.css" />
+		<link rel="stylesheet" href="./css/game-ui.css" />
 		<link rel="stylesheet" href="./css/home.css" />
 	</head>
 
-	<body>
+	<body class="home" data-page="home">
+		<div id="header"></div>
+
 		<img src="./assets/background.png" alt="" class="background" />
 
 		<div class="game-wrapper">
 			<div class="game-world">
 				<div class="sign works-sign">
 					<img src="./assets/sign.png" alt="" />
-					<span>Works</span>
+					<span>WORKS</span>
 				</div>
 
 				<div class="sign about-sign">
 					<img src="./assets/sign.png" alt="" />
-					<span>About</span>
+					<span>ABOUT</span>
 				</div>
 
 				<div class="sign skills-sign">
 					<img src="./assets/sign.png" alt="" />
-					<span>Skills</span>
+					<span>SKILLS</span>
 				</div>
 
 				<div class="sign contact-sign">
 					<img src="./assets/sign.png" alt="" />
-					<span>Contact</span>
+					<span>CONTACT</span>
 				</div>
 
 				<a href="about.html" class="house">
@@ -59,12 +62,53 @@
 				</div>
 
 				<div class="player-speech">
-					WASD to move<br />
-					Click buildings
+					Welcome, Player!<br />
+					好きなワールドに入ってみてください。
 				</div>
 			</div>
 		</div>
 
+		<aside class="home-help-panel" aria-label="Game controls">
+			<h2>HOW TO PLAY</h2>
+
+			<div class="home-help-panel__move-row">
+				<div class="home-control__keys" aria-label="W A S D">
+					<span class="home-control__key home-control__key--w">W</span>
+					<span class="home-control__key home-control__key--a">A</span>
+					<span class="home-control__key home-control__key--s">S</span>
+					<span class="home-control__key home-control__key--d">D</span>
+				</div>
+				<span class="home-control__label">MOVE</span>
+			</div>
+
+			<div class="home-help-panel__move-row">
+				<div class="home-control__keys" aria-label="Arrow keys">
+					<span class="home-control__key home-control__key--up">↑</span>
+					<span class="home-control__key home-control__key--left">←</span>
+					<span class="home-control__key home-control__key--down">↓</span>
+					<span class="home-control__key home-control__key--right">→</span>
+				</div>
+				<span class="home-control__label">MOVE</span>
+			</div>
+
+			<div class="home-help-panel__click">
+				<svg class="home-control__mouse" viewBox="0 0 32 40" aria-hidden="true">
+					<rect x="4" y="2" width="24" height="36" rx="12" />
+					<path d="M16 2v12" />
+				</svg>
+				<span class="home-control__label">
+					CLICK<br />
+					TO<br />
+					SELECT
+				</span>
+			</div>
+		</aside>
+
+		<footer class="home-bottom-panel">
+			<p class="home-bottom-panel__title">MAKE IT HAPPEN.</p>
+		</footer>
+
+		<script src="./js/layout.js"></script>
 		<script src="./js/main.js"></script>
 	</body>
 </html>
