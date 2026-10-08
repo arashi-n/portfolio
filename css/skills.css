@@ -85,6 +85,17 @@ body {
 	padding: 10px;
 }
 
+.mini-title {
+	margin: 0;
+	font-weight: bold;
+}
+
+.mini-description {
+	margin: 6px 0 0;
+	font-size: 13px;
+	line-height: 1.6;
+}
+
 @media (max-width: 768px) {
 	.mini-grid {
 		grid-template-columns: 1fr;
@@ -131,6 +142,26 @@ body {
 .skill-level {
 	height: 100%;
 	background: #4a90e2;
+}
+
+.skill-log {
+	padding: 10px 12px;
+	border: 1px solid #ccc;
+	border-radius: 6px;
+	background: rgba(255, 255, 255, 0.8);
+}
+
+.skill-log-title {
+	font-size: 12px;
+	font-weight: bold;
+	letter-spacing: 0.08em;
+}
+
+.skill-log ul {
+	margin: 6px 0 0;
+	padding-left: 20px;
+	font-size: 14px;
+	line-height: 1.7;
 }
 
 /* =========================
