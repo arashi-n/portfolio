@@ -52,6 +52,7 @@
 
 .modal-content h2 {
 	font-size: 32px;
+	font-family: "PixelMplus12", monospace;
 	text-align: center;
 	margin-bottom: 24px;
 }
@@ -60,6 +61,7 @@
 	margin-top: 40px;
 	margin-bottom: 18px;
 
+	font-family: "PixelMplus12", monospace;
 	font-size: 22px;
 	color: #fff;
 }
@@ -81,6 +83,7 @@
 .modal-content li {
 	line-height: 2;
 	font-size: 18px;
+	font-family: initial;
 }
 
 .modal-content .tags {
@@ -96,6 +99,7 @@
 	border-radius: 999px;
 	background: transparent;
 	color: #fff;
+	font-family: "PixelMplus12", monospace;
 }
 
 .modal-image {

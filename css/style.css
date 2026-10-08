@@ -44,6 +44,7 @@ body {
 
 body {
 	transition: opacity 0.3s ease;
+	font-family: "PixelMplus12", sans-serif;
 }
 
 .background {

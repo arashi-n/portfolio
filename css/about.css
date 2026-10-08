@@ -162,6 +162,10 @@ body {
 	line-height: 1.9;
 }
 
+.profile-section > p:not(.profile-section__subtitle) {
+	font-family: sans-serif;
+}
+
 .profile-section > p + p {
 	margin-top: 14px;
 }

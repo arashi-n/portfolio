@@ -53,6 +53,11 @@ body {
 .cert-card p {
 	padding: 10px;
 	text-align: center;
+	font-family: initial;
+}
+
+.cert-card p strong {
+	font-family: "PixelMplus12", monospace;
 }
 
 /* =========================
@@ -94,6 +99,7 @@ body {
 	margin: 6px 0 0;
 	font-size: 13px;
 	line-height: 1.6;
+	font-family: initial;
 }
 
 @media (max-width: 768px) {
@@ -162,6 +168,7 @@ body {
 	padding-left: 20px;
 	font-size: 14px;
 	line-height: 1.7;
+	font-family: initial;
 }
 
 /* =========================
@@ -179,4 +186,5 @@ body {
 	border-radius: 20px;
 	background: #f0f0f0;
 	font-size: 14px;
+	font-weight: bold;
 }
