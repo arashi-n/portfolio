@@ -149,3 +149,25 @@ body {
 .links a:hover {
 	opacity: 0.6;
 }
+
+.creative-back-button {
+	grid-column: 1 / -1;
+	justify-self: start;
+	display: inline-flex;
+	padding: 8px 12px;
+	border: 2px solid #111;
+	border-radius: 6px;
+	background: #fff;
+	color: #111;
+	font-family: "PixelMplus12", monospace;
+	font-size: 13px;
+	box-shadow: 4px 4px 0 #111;
+	transition:
+		transform 0.2s ease,
+		box-shadow 0.2s ease;
+}
+
+.creative-back-button:hover {
+	transform: translate(2px, 2px);
+	box-shadow: 2px 2px 0 #111;
+}

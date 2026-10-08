@@ -308,8 +308,6 @@ if (homeTitle) {
 
 	if (!prefersReducedMotion) {
 		function showEnglishText() {
-			homeTitle.classList.remove("is-changing", "is-japanese");
-
 			const letters = [...englishText].map((character, index) => {
 				const letter = document.createElement("span");
 				letter.className = "home-bottom-panel__letter";
@@ -319,6 +317,9 @@ if (homeTitle) {
 			});
 
 			homeTitle.replaceChildren(...letters);
+
+			void homeTitle.offsetWidth;
+			homeTitle.classList.remove("is-changing", "is-japanese");
 
 			window.setTimeout(() => {
 				homeTitle.classList.add("is-changing");
