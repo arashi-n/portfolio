@@ -163,7 +163,7 @@ body {
 }
 
 .profile-section > p:not(.profile-section__subtitle) {
-	font-family: sans-serif;
+	font-family: initial;
 }
 
 .profile-section > p + p {

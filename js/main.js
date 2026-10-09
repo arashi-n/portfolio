@@ -298,51 +298,45 @@ setInterval(animateBuildings, 1500);
 requestAnimationFrame(update);
 
 const homeTitle = document.querySelector(".home-bottom-panel__title");
+const englishContainer = homeTitle?.querySelector(
+	".home-bottom-panel__english",
+);
 
-if (homeTitle) {
+if (homeTitle && englishContainer) {
 	const englishText = "MAKE IT HAPPEN.";
-	const japaneseText = "考えるだけで終わらせない。";
 	const prefersReducedMotion = window.matchMedia(
 		"(prefers-reduced-motion: reduce)",
 	).matches;
 
-	if (!prefersReducedMotion) {
-		function showEnglishText() {
-			const letters = [...englishText].map((character, index) => {
-				const letter = document.createElement("span");
-				letter.className = "home-bottom-panel__letter";
-				letter.style.setProperty("--letter-index", index);
-				letter.textContent = character === " " ? "\u00a0" : character;
-				return letter;
-			});
+	function showEnglishText() {
+		const letters = [...englishText].map((character, index) => {
+			const letter = document.createElement("span");
+			letter.className = "home-bottom-panel__letter";
+			letter.style.setProperty("--letter-index", index);
+			letter.textContent = character === " " ? "\u00a0" : character;
+			return letter;
+		});
 
-			homeTitle.replaceChildren(...letters);
+		englishContainer.replaceChildren(...letters);
+		homeTitle.classList.remove("is-changing", "is-japanese");
 
-			void homeTitle.offsetWidth;
-			homeTitle.classList.remove("is-changing", "is-japanese");
+		window.setTimeout(() => {
+			homeTitle.classList.add("is-changing");
 
 			window.setTimeout(() => {
-				homeTitle.classList.add("is-changing");
+				homeTitle.classList.add("is-japanese");
+				homeTitle.classList.remove("is-changing");
 
 				window.setTimeout(() => {
-					homeTitle.textContent = japaneseText;
-					homeTitle.classList.remove("is-changing");
-					homeTitle.classList.add("is-japanese");
+					homeTitle.classList.add("is-changing");
 
-					window.setTimeout(() => {
-						homeTitle.classList.add("is-changing");
+					window.setTimeout(showEnglishText, 250);
+				}, 1800);
+			}, 250);
+		}, 3200);
+	}
 
-						window.setTimeout(() => {
-							homeTitle.replaceChildren();
-							homeTitle.classList.remove("is-changing", "is-japanese");
-
-							window.setTimeout(showEnglishText, 350);
-						}, 250);
-					}, 1800);
-				}, 250);
-			}, 3200);
-		}
-
+	if (!prefersReducedMotion) {
 		showEnglishText();
 	}
 }

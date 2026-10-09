@@ -79,6 +79,9 @@ body.home {
     看板
 ===================== */
 .sign {
+	display: block;
+	cursor: pointer;
+
 	position: absolute;
 	width: 216px;
 	height: 150px;
@@ -216,29 +219,40 @@ body.home {
 /* =====================
     建物演出
 ===================== */
+.sign,
 .castle,
 .house,
 .skill-tree,
 .mailbox {
-	filter: drop-shadow(0px 6px 0px rgba(0, 0, 0, 0.3));
+	filter: drop-shadow(0 6px 0 rgba(0, 0, 0, 0.3));
+	scale: 1;
+	transition: scale 0.2s ease;
 }
 
-.house:hover,
+.sign:hover,
 .castle:hover,
+.house:hover,
 .skill-tree:hover,
-.mailbox:hover {
-	transform: scale(1.05);
-	transition: transform 0.2s ease;
+.mailbox:hover,
+.game-world:has(.works-sign:hover) .castle,
+.game-world:has(.castle:hover) .works-sign,
+.game-world:has(.about-sign:hover) .house,
+.game-world:has(.house:hover) .about-sign,
+.game-world:has(.skills-sign:hover) .skill-tree,
+.game-world:has(.skill-tree:hover) .skills-sign,
+.game-world:has(.contact-sign:hover) .mailbox,
+.game-world:has(.mailbox:hover) .contact-sign {
+	scale: 1.05;
 }
 
 @keyframes buildingHint {
 	0%,
 	100% {
-		transform: translateY(0);
+		translate: 0 0;
 	}
 
 	50% {
-		transform: translateY(-4px);
+		translate: 0 -4px;
 	}
 }
 
@@ -479,6 +493,22 @@ a:hover {
 	text-align: center;
 	text-shadow: 0 0 8px rgba(255, 255, 255, 0.35);
 	transition: opacity 0.25s ease;
+}
+
+.home-bottom-panel__english {
+	display: inline-block;
+}
+
+.home-bottom-panel__japanese {
+	display: none;
+}
+
+.home-bottom-panel__title.is-japanese .home-bottom-panel__english {
+	display: none;
+}
+
+.home-bottom-panel__title.is-japanese .home-bottom-panel__japanese {
+	display: inline-block;
 }
 
 .home-bottom-panel__title.is-changing {
