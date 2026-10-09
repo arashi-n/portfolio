@@ -341,7 +341,13 @@ if (homeTitle && englishContainer) {
 				window.setTimeout(() => {
 					homeTitle.classList.add("is-changing");
 
-					window.setTimeout(showEnglishText, 250);
+					window.setTimeout(() => {
+						showEnglishText();
+
+						window.setTimeout(() => {
+							homeTitle.classList.remove("is-changing");
+						}, 500);
+					}, 500);
 				}, 1800);
 			}, 250);
 		}, 3200);
