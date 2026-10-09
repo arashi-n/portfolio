@@ -308,6 +308,15 @@ if (homeTitle && englishContainer) {
 		"(prefers-reduced-motion: reduce)",
 	).matches;
 
+	function revealTitle() {
+		// 2フレーム待って、非表示状態が描画されてから表示する
+		window.requestAnimationFrame(() => {
+			window.requestAnimationFrame(() => {
+				homeTitle.classList.remove("is-changing");
+			});
+		});
+	}
+
 	function showEnglishText() {
 		const letters = [...englishText].map((character, index) => {
 			const letter = document.createElement("span");
@@ -317,15 +326,17 @@ if (homeTitle && englishContainer) {
 			return letter;
 		});
 
+		// タイトルが透明な間に英語を作り直して表示状態を切り替える
 		englishContainer.replaceChildren(...letters);
-		homeTitle.classList.remove("is-changing", "is-japanese");
+		homeTitle.classList.remove("is-japanese");
+		revealTitle();
 
 		window.setTimeout(() => {
 			homeTitle.classList.add("is-changing");
 
 			window.setTimeout(() => {
 				homeTitle.classList.add("is-japanese");
-				homeTitle.classList.remove("is-changing");
+				revealTitle();
 
 				window.setTimeout(() => {
 					homeTitle.classList.add("is-changing");
