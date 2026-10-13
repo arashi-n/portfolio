@@ -122,33 +122,21 @@
 					<div class="card-open">▶ PRESS ENTER</div>
 				</div>
 
+				<div class="work-card" data-modal="lc-app">
+					<img src="./assets/lc-app1.png" alt="preview" class="work-image" />
+					<h2>ListCheck</h2>
+
+					<div class="tags">
+						<span>Google Apps Script</span>
+						<span>JavaScript</span>
+						<span>HTML/CSS</span>
+						<span>Google Sheets</span>
+					</div>
+
+					<div class="card-open">▶ PRESS ENTER</div>
+				</div>
+
 				<!-- <div class="work-card" data-modal="a">
-					<h2>タイトル</h2>
-					<p>準備中</p>
-
-					<div class="tags">
-						<span>---</span>
-						<span>---</span>
-						<span>---</span>
-					</div>
-
-					<div class="card-open">▶ PRESS ENTER</div>
-				</div>
-
-				<div class="work-card" data-modal="b">
-					<h2>タイトル</h2>
-					<p>準備中</p>
-
-					<div class="tags">
-						<span>---</span>
-						<span>---</span>
-						<span>---</span>
-					</div>
-
-					<div class="card-open">▶ PRESS ENTER</div>
-				</div>
-
-				<div class="work-card" data-modal="c">
 					<h2>タイトル</h2>
 					<p>準備中</p>
 
@@ -756,7 +744,94 @@
 			</div>
 		</div>
 
-		<div class="modal" id="a">
+		<div class="modal" id="lc-app">
+			<div class="modal-content">
+				<span class="modal-close">×</span>
+
+				<img src="./assets/lc-app.png" alt="lc-app" class="modal-image" />
+
+				<h2>ListCheck</h2>
+
+				<div class="tags">
+					<span>Google Apps Script</span>
+					<span>JavaScript</span>
+					<span>HTML/CSS</span>
+					<span>Google Sheets</span>
+				</div>
+
+				<h3>概要</h3>
+				<p>
+					氏名・郵便番号・住所をもとに、登録済みの住所録との重複をチェックするWebアプリです。
+					照合結果に応じて、重複候補がない場合は自動で住所録に登録し、確認が必要な場合は候補を表示して、利用者が確認したうえで登録できる仕組みを実装しました。
+				</p>
+
+				<h3>制作背景</h3>
+				<p>
+					知人から、住所録の重複確認にかかる手間を減らしたいという相談を受けたことをきっかけに制作しました。
+					既存の住所録と新しい登録情報を照合し、重複の可能性があるデータを確認できるようにすることで、手作業による確認負担の軽減を目指しました。
+					相談内容をもとに必要な機能を検討し、データの照合から登録までを行えるWebアプリとして形にしました。
+				</p>
+
+				<h3>主な機能</h3>
+				<ul>
+					<li>氏名・郵便番号・住所の入力</li>
+					<li>Googleスプレッドシートに登録された住所録との照合</li>
+					<li>
+						重複候補の有無に応じた3段階の判定（新規登録・要確認・重複の可能性が高い）
+					</li>
+					<li>重複候補がない場合の自動登録・住所録への反映</li>
+					<li>要確認候補の確認後の登録</li>
+					<li>重複の可能性が高い候補を登録する際の確認ダイアログ</li>
+					<li>
+						全角・半角、空白、ハイフン、ひらがな・カタカナなどの表記ゆれを考慮した照合処理
+					</li>
+				</ul>
+
+				<h3>工夫した点</h3>
+				<ul>
+					<li>
+						氏名や住所の表記を正規化し、表記の違いを考慮して照合できるようにしました。
+					</li>
+					<li>
+						完全一致だけでなく、氏名の類似や住所の一部の違いも考慮し、確認が必要な候補を抽出する仕組みを設計しました。
+					</li>
+					<li>
+						判定結果を色分けし、登録可否や確認の必要性を視覚的に把握できるUIにしました。
+					</li>
+					<li>
+						重複の可能性があるデータを一律に登録不可とせず、利用者が確認したうえで登録できる仕組みにしました。
+					</li>
+					<li>
+						Googleスプレッドシートと連携し、登録データを一元管理できる構成にしました。
+					</li>
+				</ul>
+
+				<h3>今後の改善点</h3>
+				<ul>
+					<li>住所の表記や構成の違いを考慮した、照合・判定方法全体の見直し</li>
+					<li>
+						住所の一部が不足している場合など、誤って新規登録されるケースの改善
+					</li>
+					<li>さまざまな入力パターンを用いたテストによる判定精度の向上</li>
+				</ul>
+
+				<div class="modal-links">
+					<a
+						href="https://script.google.com/macros/s/AKfycbyZbX-H9LC_5CxPcX3LOo8PTQF7PG2JjMDmcAGgUgGBUFwdPN3f_PQcWP10rhCZA7sU/exec"
+						target="_blank"
+						>Live Demo</a
+					>
+					<a
+						href="https://docs.google.com/spreadsheets/d/e/2PACX-1vRRUb0FnBr_mmdcuOlUnRHVCo_kaTtuhHBsJMoEV1q_UrhomdjAPPa4Gd6nvB8dWUovxH2irOioIGmy/pubhtml?gid=0&single=true"
+						target="_blank"
+						>サンプル住所録</a
+					>
+					<a href="#" target="_blank">操作動画（準備中）</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- <div class="modal" id="a">
 			<div class="modal-content">
 				<span class="modal-close">×</span>
 
@@ -795,89 +870,7 @@
 					<a href="#" target="_blank">操作動画（準備中）</a>
 				</div>
 			</div>
-		</div>
-
-		<div class="modal" id="b">
-			<div class="modal-content">
-				<span class="modal-close">×</span>
-
-				<img src="#" alt="b" class="modal-image" />
-
-				<h2>タイトル</h2>
-
-				<div class="tags">
-					<span>---</span>
-					<span>---</span>
-					<span>---</span>
-				</div>
-
-				<h3>概要</h3>
-				<p>準備中</p>
-
-				<h3>制作背景</h3>
-				<p>準備中</p>
-
-				<h3>主な機能</h3>
-				<ul>
-					<li>準備中</li>
-					<li>準備中</li>
-				</ul>
-
-				<h3>工夫した点</h3>
-				<ul>
-					<li>準備中</li>
-					<li>準備中</li>
-				</ul>
-
-				<div class="modal-links">
-					<a href="#" target="_blank">Live Demo</a>
-					<a href="#" target="_blank">GitHub</a>
-					<a href="#" target="_blank">READ ME</a>
-					<a href="#" target="_blank">操作動画（準備中）</a>
-				</div>
-			</div>
-		</div>
-
-		<div class="modal" id="c">
-			<div class="modal-content">
-				<span class="modal-close">×</span>
-
-				<img src="#" alt="b" class="modal-image" />
-
-				<h2>タイトル</h2>
-
-				<div class="tags">
-					<span>---</span>
-					<span>---</span>
-					<span>---</span>
-				</div>
-
-				<h3>概要</h3>
-				<p>準備中</p>
-
-				<h3>制作背景</h3>
-				<p>準備中</p>
-
-				<h3>主な機能</h3>
-				<ul>
-					<li>準備中</li>
-					<li>準備中</li>
-				</ul>
-
-				<h3>工夫した点</h3>
-				<ul>
-					<li>準備中</li>
-					<li>準備中</li>
-				</ul>
-
-				<div class="modal-links">
-					<a href="#" target="_blank">Live Demo</a>
-					<a href="#" target="_blank">GitHub</a>
-					<a href="#" target="_blank">READ ME</a>
-					<a href="#" target="_blank">操作動画（準備中）</a>
-				</div>
-			</div>
-		</div>
+		</div> -->
 
 		<div id="footer"></div>
 
