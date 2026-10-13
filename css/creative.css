@@ -4,9 +4,9 @@ body {
 }
 
 .creative-container {
-	max-width: 1100px;
+	max-width: 1360px;
 	margin: 0 auto;
-	padding: 0 40px 100px;
+	padding: 0 24px 100px;
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
 	gap: 24px;
@@ -104,13 +104,13 @@ body {
 }
 
 .creative-card h2 {
-	font-size: 18px;
+	font-size: 20px;
 	font-weight: bold;
 	margin: 0;
 }
 
 .creative-card p {
-	font-size: 14px;
+	font-size: 16px;
 	line-height: 1.6;
 	color: #333;
 	overflow: hidden;
@@ -126,7 +126,7 @@ body {
 }
 
 .creative-card .tags span {
-	font-size: 12px;
+	font-size: 14px;
 	padding: 4px 8px;
 	border: 1px solid #aaa;
 	border-radius: 4px;
@@ -141,7 +141,7 @@ body {
 }
 
 .links a {
-	font-size: 13px;
+	font-size: 14px;
 	color: #000;
 	text-decoration: underline;
 }
@@ -160,7 +160,7 @@ body {
 	background: #fff;
 	color: #111;
 	font-family: "PixelMplus12", monospace;
-	font-size: 13px;
+	font-size: 14px;
 	box-shadow: 4px 4px 0 #111;
 	transition:
 		transform 0.2s ease,
@@ -170,4 +170,28 @@ body {
 .creative-back-button:hover {
 	transform: translate(2px, 2px);
 	box-shadow: 2px 2px 0 #111;
+}
+
+@media (max-width: 700px) {
+	.creative-container {
+		max-width: 1100px;
+		padding: 0 40px 100px;
+	}
+
+	.creative-card h2 {
+		font-size: 18px;
+	}
+
+	.creative-card p {
+		font-size: 14px;
+	}
+
+	.creative-card .tags span {
+		font-size: 12px;
+	}
+
+	.links a,
+	.creative-back-button {
+		font-size: 13px;
+	}
 }

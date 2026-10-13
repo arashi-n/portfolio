@@ -4,11 +4,11 @@ body {
 }
 
 .works-container {
-	max-width: 1100px;
+	max-width: 1360px;
 	margin: 0 auto;
-	padding: 0 40px;
+	padding: 0 24px;
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(320px, 320px));
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
 	justify-content: center;
 	gap: 24px;
 
@@ -23,7 +23,7 @@ body {
 }
 
 .work-card {
-	height: 380px;
+	height: 440px;
 	overflow: hidden;
 
 	background: #fff;
@@ -109,14 +109,14 @@ body {
 }
 
 .work-card h2 {
-	font-size: 18px;
+	font-size: 20px;
 	font-weight: bold;
 	margin-bottom: 6px;
 	font-family: "PixelMplus12", monospace;
 }
 
 .work-card p {
-	font-size: 14px;
+	font-size: 16px;
 	line-height: 1.6;
 	color: #333;
 	overflow: hidden;
@@ -132,7 +132,7 @@ body {
 }
 
 .work-card .tags span {
-	font-size: 12px;
+	font-size: 14px;
 	padding: 4px 8px;
 	border: 1px solid #aaa;
 	border-radius: 4px;
@@ -200,7 +200,7 @@ body {
 }
 
 .enter-label {
-	font-size: 14px;
+	font-size: 16px;
 	font-weight: bold;
 	letter-spacing: 2px;
 
@@ -223,7 +223,79 @@ body {
 	opacity: 0.8;
 }
 
+html {
+	scroll-behavior: smooth;
+}
+
+.works-jump-menu {
+	max-width: 1360px;
+	margin: 0 auto 24px;
+	padding: 0 24px;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(320px, 320px));
+	gap: 24px;
+	justify-content: center;
+}
+
+.works-jump-menu a {
+	padding: 8px 12px;
+	border: 2px solid #111;
+	border-radius: 6px;
+	background: #fff;
+	color: #111;
+	font-family: "PixelMplus12", monospace;
+	font-size: 16px;
+	text-decoration: none;
+	box-shadow: 4px 4px 0 #111;
+	transition:
+		transform 0.2s ease,
+		box-shadow 0.2s ease;
+	grid-column: 1 / -1;
+	justify-self: end;
+}
+
+.works-jump-menu a:hover {
+	transform: translate(2px, 2px);
+	box-shadow: 2px 2px 0 #111;
+}
+
+#creative-works {
+	scroll-margin-top: 100px;
+}
+
 @media (max-width: 700px) {
+	.works-container {
+		max-width: 1100px;
+		padding: 0 40px;
+		grid-template-columns: repeat(auto-fit, minmax(320px, 320px));
+	}
+
+	.works-jump-menu {
+		max-width: 1100px;
+		padding: 0 40px;
+	}
+
+	.work-card h2 {
+		font-size: 18px;
+	}
+
+	.work-card p {
+		font-size: 14px;
+	}
+
+	.work-card .tags span {
+		font-size: 12px;
+	}
+
+	.works-jump-menu a {
+		font-size: 13px;
+	}
+
+	.enter-label {
+		font-size: 14px;
+		margin-top: 10px;
+	}
+
 	.works-container .creative-entry-card {
 		flex-direction: row;
 		height: auto;
@@ -244,48 +316,4 @@ body {
 		margin-top: 8px;
 		align-self: flex-start;
 	}
-
-	.enter-label {
-		margin-top: 10px;
-	}
-}
-
-html {
-	scroll-behavior: smooth;
-}
-
-.works-jump-menu {
-	max-width: 1100px;
-	margin: 0 auto 24px;
-	padding: 0 40px;
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(320px, 320px));
-	gap: 24px;
-	justify-content: center;
-}
-
-.works-jump-menu a {
-	padding: 8px 12px;
-	border: 2px solid #111;
-	border-radius: 6px;
-	background: #fff;
-	color: #111;
-	font-family: "PixelMplus12", monospace;
-	font-size: 13px;
-	text-decoration: none;
-	box-shadow: 4px 4px 0 #111;
-	transition:
-		transform 0.2s ease,
-		box-shadow 0.2s ease;
-	grid-column: 1 / -1;
-	justify-self: end;
-}
-
-.works-jump-menu a:hover {
-	transform: translate(2px, 2px);
-	box-shadow: 2px 2px 0 #111;
-}
-
-#creative-works {
-	scroll-margin-top: 100px;
 }

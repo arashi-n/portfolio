@@ -69,7 +69,7 @@ main {
 	margin: 0 0 24px;
 	color: #000;
 	font-family: "PixelMplus12", monospace;
-	font-size: 32px;
+	font-size: 48px;
 	letter-spacing: 0.08em;
 	text-align: center;
 	text-shadow: none;
@@ -78,12 +78,16 @@ main {
 .page-heading span {
 	display: block;
 	margin-top: 8px;
-	font-size: 14px;
+	font-size: 16px;
 	letter-spacing: 0.12em;
 }
 
 @media (max-width: 700px) {
 	.page-heading {
 		font-size: 26px;
+	}
+
+	.page-heading span {
+		font-size: 14px;
 	}
 }
